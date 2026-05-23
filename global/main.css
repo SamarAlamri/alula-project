@@ -1,0 +1,732 @@
+/* Name: Zain Aljifry, ID: 2107808, Section: DAR, Date: 8 march *//* Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march * |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march /
+
+
+/* ========================= */
+/* Body Styling */
+/* ========================= */
+
+/* Styles applied to the entire webpage body */
+body{
+
+/* Sets the default font for the whole website */
+font-family:Arial, sans-serif;
+
+/* Sets the background color of the page */
+background-color:#f4f4f4;
+
+color: #4a3a33;
+
+/* Removes default browser margin */
+margin:0;
+
+/* Removes default browser padding */
+padding:0;
+
+}
+
+
+
+/* ========================= */
+/* Header Styling */
+/* ========================= */
+
+/* Styles the top header section of the website */
+header{
+
+/* Allows positioning elements inside the header (like the logo) */
+position:relative;
+
+/* Sets the header background color */
+background-color:#7a3b1d;
+
+/* Sets the text color inside the header */
+color:white;
+
+/* Adds spacing inside the header */
+padding:20px;
+
+/* Centers the header text */
+text-align:center;
+
+}
+
+
+
+/* ========================= */
+/* Logo Styling */
+/* ========================= */
+
+/* Styles the website logo */
+#site-logo{
+
+/* Positions the logo inside the header */
+position:absolute;
+
+/* Distance from the top */
+top:5px;
+
+/* Distance from the left */
+left:20px;
+
+/* Logo width */
+width:180px;
+
+/* Keeps image proportions */
+height:auto;
+
+/* Removes default border */
+border:none;
+
+}
+
+/* ========================= */
+/* Login Icon Styling */
+/* ========================= */
+
+#Signin-icon {
+    /* Position it relative to the <header> */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+    /* Style the link */
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#Signin-icon img {
+    /* Size the icon (adjust as needed) */
+    width: 30px; 
+    height: auto;
+    
+    /* Remove the default border you have for all images */
+    border: none;
+    
+    /* Center it above or beside the text */
+    margin: 0 auto 5px auto; 
+    display: block;
+}
+
+#Signin-icon:hover {
+    /* Hover effect from Lecture 03 */
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+
+
+/* ========================= */
+/* Navigation Menu */
+/* ========================= */
+
+nav {
+    background: transparent; /* Remove the solid brown box */
+    margin-top: 30px;
+}
+
+nav a {
+    color: white;
+    font-size: 14px !important; 
+    font-weight: 600 !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s; /* Smooth hover effect */
+    text-decoration: none;
+}
+
+nav a:hover {
+    border-bottom: 2px solid white;
+    text-decoration: none;
+}
+
+
+
+
+
+/* ========================= */
+/* Main Content Styling */
+/* ========================= */
+
+#main-content {
+    margin: 0;
+    width: 90% auto;
+    max-width: 1100px auto;
+    padding: 40px;
+    background-color: white;
+    /*border: 1px solid #ddd;*/
+}
+
+#main-content h2 {
+    font-size: 1.8rem;
+    color: #5a1a0a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style the Hero Container */
+#hero-header {
+    background-color: #fdfaf5; /* Sand-colored background */
+    margin-bottom: 40px;
+    border-bottom: 1px solid #d4a373;
+}
+
+/* Make the Hero Image full width */
+#hero-image {
+    width: 100%;
+    margin: 0;
+    border: none;
+    display: block;
+}
+
+/* Style the Hero Text Content area */
+#hero-text-content {
+    padding: 60px 40px; /* Lots of padding for elegance */
+    text-align: center;
+}
+
+/* Make the main headline much larger and centered */
+#hero-text-content h2 {
+    font-size: 2.5rem; /* Large font size */
+    margin-top: 0;
+    color: #5a1a0a; /* Darker earth tone from sign-in palette */
+    font-weight: bold;
+}
+
+#main-hero {
+    height: 100vh; /* Fills 100% of the screen height */
+    background: url('../images/main_pic.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers the text vertically */
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(44, 24, 16, 0.6) 100%);  /* Adds a subtle dark tint so text is readable */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#main-hero h1 {
+    font-size: 5rem; /* Massive, bold heading like the inspiration */
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* Styling for sub-pages to differentiate from the Home page */
+.slim-header {
+    height: 30vh !important; /* Half the height of the home page */
+    min-height: 400px; /* Ensures it doesn't get too small on short screens */
+}
+
+.slim-header .hero-overlay {
+    height: 100% !important; /* Make it fill the header height */
+    justify-content: flex-end; 
+    padding-bottom: 40px; /* Push the text slightly up from the bottom edge */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slim-header h1 {
+    font-size: 3.5rem !important; /* Slightly smaller than the home page for hierarchy */
+    margin-bottom: 10px;
+}
+
+.slim-header nav {
+    margin-top: 10px; /* Tighter spacing for the slim look */
+}
+
+/* ========================= */
+/* Home page Styling */
+/* ========================= */
+
+
+
+
+/* 2. Create the 3-column Grid */
+#grid-container {
+    display: grid;
+    /* This creates 3 equal columns */
+    grid-template-columns: 1fr 1fr 1fr; 
+    /* Adds space between the columns */
+    gap: 30px; 
+    margin-top: 30px;
+    align-items: stretch;
+}
+
+/* 3. Style the individual "Cards" */
+.grid-item {
+    background-color: #fdfaf5; /* Light sand color to match your Sign-in palette */
+    padding: 20px;
+    border-radius: 8px;
+    border-top: 4px solid #7a3b1d; /* Terracotta accent from your header */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.grid-item h3 {
+    margin-top: 0;
+    color: #5a1a0a;
+    font-size: 1.2rem;
+}
+
+/* Responsive fix: If the screen is small (mobile), stack them back up */
+@media (max-width: 768px) {
+    #grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Page-specific background overrides */
+/* ========================= */
+/* history Styling */
+/* ========================= */
+
+.hero-content h1, .hero-content p, nav a {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.history-hero {
+    background: url('../images/2560px-Madaan-saleh-1767900822.webp') no-repeat center center/cover !important;
+}
+
+.history-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+}
+
+.history-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.history-image {
+    flex: 1;
+}
+
+.history-image img {
+    width: 100%;
+    border-radius: 15px; /* Rounded corners for a modern feel */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.history-text {
+    flex: 1;
+    font-size: 1.1rem;
+    align-items: left ;   
+}
+
+.history-text h2 {
+    /* Ensures the heading specifically stays on the left */
+    text-align: left !important;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.history-text h3 {
+    font-size: 2rem;
+    color: #5a1a0a;
+    margin-bottom: 15px;
+}
+
+/* ========================= */
+/* Video Styling */
+/* ========================= */
+
+.video-hero {
+    background: url('../images/video_pic.jpg') no-repeat center center/cover !important;
+    background-position: center 80% !important;
+}
+
+.video-page-content {
+    background-color: #fdfaf5 !important; /* Dark background for cinema feel */
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;   
+    padding: 60px 0;
+    max-width: 100% !important; /* Allow the dark background to span wide */
+}
+
+.video-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 5px solid #7a3b1d; /* Terracotta frame */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.video-wrapper video {
+    width: 100%;
+    display: block;
+}
+
+/* ========================= */
+/* Feedback Styling */
+/* ========================= */
+
+.feedback-hero {
+    background: url('../images/feedback_pic.jpg') no-repeat center center/cover !important;
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.form-container h2 {
+    text-align: center !important;
+    color: #5a1a0a;
+    font-size: 2.2rem;
+}
+
+.form-container p {
+    text-align: left;
+    margin-bottom: 30px;
+    color: #4a3a33;
+}
+
+.center-text {
+    text-align: center !important;
+}
+
+/* Label Styling */
+label {
+    font-weight: 600;
+    color: #7a3b1d;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* Modern Input Fields */
+input[type="text"], 
+input[type="email"], 
+select, 
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d4a373;
+    background-color: #fdfaf5;
+    border-radius: 8px;
+    font-family: inherit;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #7a3b1d;
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(122, 59, 29, 0.2);
+}
+
+/* Styling Radio & Checkboxes */
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #7a3b1d; /* Standardizes the color of circles/checks */
+}
+
+/* Button Styling */
+input[type="submit"] {
+    background-color: #7a3b1d;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%; /* Full width button like pro sites */
+    font-size: 1.1rem;
+}
+
+input[type="reset"] {
+    background-color: transparent;
+    color: #7a3b1d;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    margin: 15px auto;
+}
+
+input[type="submit"]:hover {
+    background-color: #5a1a0a;
+}
+
+/* ========================= */
+/* Services Page Styling */
+/* ========================= */
+
+/* Sets the background for the services slim header */
+.services-hero {
+    background: url('../images/serv_pic.jpg') no-repeat center center/cover !important;
+}
+
+/* Container for the service descriptions */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for services */
+    gap: 40px;
+    margin-top: 50px;
+}
+
+/* Style for each service "Card" */
+.service-card {
+    background: #ffffff;
+    padding: 30px;
+    border-left: 5px solid #7a3b1d; /* Deep terracotta accent */
+    box-shadow: 30px 40px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+.service-card h3 {
+    color: #5a1a0a;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #d4a373;
+    padding-bottom: 10px;
+}
+
+/* Button style */
+.select-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #7a3b1d;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.select-btn:hover {
+    background-color: #5a1a0a;
+}
+
+/* Confirmation message (hidden by default) */
+#confirmation-message {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Show message when active */
+#confirmation-message.show {
+    opacity: 1;
+}
+
+/* ========================= */
+/* Tour Schedule Page Styling */
+/* ========================= */
+
+/* Sets the background image for the My Tour header */
+.schedule-hero {
+    background: url('../images/tour_pic.webp') no-repeat center center/cover !important;
+}
+
+/* Container for the table */
+.itinerary-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.intro-text {
+    font-style: italic;
+    color: #4a3a33;
+    margin-bottom: 30px;
+}
+
+/* Modern Table Styling */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    color: #4a3a33;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: none; /* Removes the old border="1" look */
+}
+
+.modern-table th, .modern-table td {
+    padding: 18px;
+    border: 1px solid #eee;
+}
+
+/* Table Header - Matching your Terracotta theme */
+.modern-table thead th {
+    background-color: #7a3b1d; 
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Time Column - Matching your Sand theme */
+.modern-table tbody th {
+    background-color: #fdfaf5;
+    color: #5a1a0a;
+    font-weight: bold;
+}
+
+/* Highlight for spanned activities */
+.highlight-cell {
+    background-color: #fdfaf5;
+    color: #7a3b1d;
+    font-weight: 600;
+}
+
+/* Style for the Lunch Break row */
+.break-row {
+    background-color: #f9f9f9;
+    color: #888;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+
+/* ========================= */
+/* Footer Styling */
+/* ========================= */
+
+/* Styles the footer section */
+footer{
+
+/* Clears floating elements like the sidebar */
+clear:both;
+
+/* Footer background color */
+background-color:#7a3b1d;
+
+/* Footer text color */
+color:white;
+
+/* Centers footer text */
+text-align:center;
+
+/* Padding inside footer */
+padding:10px;
+
+/* Space above the footer */
+margin-top:0;
+
+}
+
+/* ========================= */
+/* Login & Sign Up Palette */
+/* ========================= */
+
+/* The container box */
+#Sign-in {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff; /* Clean white for the box */
+    border: 1px solid #d4a373; /* Sand-colored border */
+    border-top: 5px solid #7a3b1d; /* Deep terracotta top accent */
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Optional: subtle depth */
+}
+
+/* Titles inside the form */
+#Sign-in h2 {
+    color: #5a1a0a; /* Darker earth tone */
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input[type="text"], 
+input[type="email"], 
+input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #bdc3c7;
+    background-color: #fdfaf5; /* Very light sand background */
+    color: #333; /* Dark Charcoal text for readability */
+}
+
+/* Focused input (when user clicks) */
+input[type="text"]:focus, 
+input[type="password"]:focus {
+    border: 1px solid #7a3b1d;
+    outline: none;
+}
+
+/* The Submit Button */
+input[type="submit"] {
+    width: 100%;
+    background-color: #7a3b1d; /* Terracotta */
+    color: white;
+    padding: 12px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #5a1a0a; /* Darkens on hover (Lecture 03) */
+}
+
+/* ========================= */
+/* Quote Styling */
+/* ========================= */
+
+#quote-section {
+    text-align: center;
+    padding: 40px 20px; /* Big vertical gap to separate it from the grid */
+    background-color: #fdfaf5; /* Matches your sand-colored grid items */
+    margin-top: 40px;
+    border-top: 1px solid #d4a373;
+    border-bottom: 1px solid #d4a373;
+}
+
+.fancy-quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #5a1a0a; /* Deep earth tone */
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    line-height: 1.5;
+    font-family: "Georgia", serif; /* Serif fonts look more elegant for quotes */
+}
+
+.quote-author {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #7a3b1d;
+    font-weight: bold;
+}

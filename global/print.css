@@ -1,0 +1,72 @@
+/* Name: Zain Aljifry, ID: 2107808, Section: DAR, Date: 8 march *//* Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march */
+
+
+/* ================================================= */
+/* Hide unnecessary elements when printing the page  */
+/* ================================================= */
+
+/* These elements will not appear in the printed version of the page */
+header,
+nav,
+footer,
+aside,
+#sidebar,
+h1,
+h2,
+p,
+form {
+
+    /* Hides the elements when the page is printed */
+    display: none;
+
+}
+
+
+
+/* ================================================= */
+/* Table styling for print layout                    */
+/* ================================================= */
+
+/* Ensures the table takes the full width of the printed page */
+table {
+
+    /* Table will expand to the full page width */
+    width: 100%;
+
+    /* Removes gaps between table borders */
+    border-collapse: collapse;
+
+}
+
+
+
+/* Styles table headers and table cells */
+th, td {
+
+    /* Adds a solid border around cells */
+    border: 1px solid black;
+
+    /* Adds spacing inside table cells */
+    padding: 8px;
+
+    /* Aligns text to the left */
+    text-align: left;
+
+}
+
+
+
+/* ================================================= */
+/* Page setup for printing                           */
+/* ================================================= */
+
+/* Defines the page layout when printing */
+@page {
+
+    /* Sets paper size to A4 in portrait orientation */
+    size: A4 portrait;
+
+    /* Sets page margins */
+    margin: 1in;
+
+}
