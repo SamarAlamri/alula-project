@@ -1,18 +1,26 @@
 <!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
 <?php
-include "includes/db.php";
+include "../includes/db.php";
 
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = trim($_POST['name']);
+
+    if (strpos($name, ' ') !== false) {
+        $message = "Username cannot contain spaces.";
+    }
+
     $email = trim($_POST['email']);
     $plain_password = $_POST['password'];
 
     if (empty($name) || empty($email) || empty($plain_password)) {
         $message = "All fields are required.";
     } 
+    elseif (strpos($name, ' ') !== false) {
+        $message = "Username cannot contain spaces.";
+    }
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $message = "Invalid email format.";
     } 
@@ -29,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("sss", $name, $email, $hashed_password);
 
         if ($stmt->execute()) {
-            $message = "Registration successful!";
+            header("Location: login.php");
+            exit();
         } else {
             $message = "Email already exists or something went wrong.";
         }
@@ -47,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div id="Sign-in">
         <h2>Create an Account</h2>
-        <form action="register.php" method="post">
+        <form action="register.php" method="POST" onsubmit="return validateRegisterForm()">
             <p>
                 <label for="new-user">Username:</label><br>
                 <input type="text" id="new-user" name="name" required>
@@ -62,15 +71,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </p>
             <p>
                 
-                <input type="submit" value="Sign Up" formaction="SignIn.html">
+                <input type="submit" value="Sign Up">
                 
             </p>
         </form>
-        <p>Already have an account? <a href="SignIn.html">SignIn here</a></p>
+        <p>Already have an account? <a href="login.php">SignIn here</a></p>
     </div>
 
     <?php if (!empty($message)) { ?>
     <p><?php echo $message; ?></p>
     <?php } ?>
+
+    <script src="../scripts/main.js"></script>
+    
 </body>
 </html>

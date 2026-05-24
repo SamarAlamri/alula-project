@@ -1,3 +1,9 @@
 <?php
-echo "PHP is working!";
+session_start();
+
+if (isset($_SESSION['name'])) {
+    echo $_SESSION['name'];
+} else {
+    echo "Not logged in";
+}
 ?>

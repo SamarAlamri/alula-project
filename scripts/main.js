@@ -91,3 +91,31 @@ function validateForm() {
     return false;
 }
 
+function validateRegisterForm() {
+    var name = document.getElementById("new-user").value;
+    var email = document.getElementById("new-email").value;
+    var password = document.getElementById("pass").value;
+
+    if (name === "" || email === "" || password === "") {
+        alert("All fields must be filled out.");
+        return false;
+    }
+
+    if (name.includes(" ")) {
+        alert("Username cannot contain spaces.");
+        return false;
+    }
+
+    if (email.indexOf("@") === -1) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    if (password.length < 8) {
+        alert("Password must be at least 8 characters.");
+        return false;
+    }
+
+    return true;
+}
+
