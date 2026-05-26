@@ -59,25 +59,19 @@ session_start();
                 <!-- Checks if the user is logged in -->
                 <?php if (isset($_SESSION['user_id'])): ?>
 
-                    <!-- Checks if the logged-in user is an admin -->
-                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <a href="admin/dashboard.php">Dashboard</a>
+    <?php endif; ?>
 
-                        <!-- Admin dashboard link -->
-                        <a href="admin/dashboard.php">Dashboard</a>
+    <a href="pages/logout.php">Logout</a>
 
-                    <?php endif; ?>
+<?php else: ?>
 
-                    <!-- Logout link -->
-                    <a href="logout.php">Logout</a>
+    <a href="pages/login.php">Login</a>
 
-                <?php else: ?>
+    <a href="pages/register.php">Register</a>
 
-                    <!-- Login and register links for guests -->
-                    <a href="login.php">Login</a>
-
-                    <a href="register.php">Register</a>
-
-                <?php endif; ?>
+<?php endif; ?>
 
             </nav>
 
