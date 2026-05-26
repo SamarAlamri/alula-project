@@ -1,6 +1,9 @@
 <?php
 // Starts the session to access logged-in user information
 session_start();
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 
 // Includes the database connection file
 include 'includes/db.php';
