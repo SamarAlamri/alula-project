@@ -1,9 +1,6 @@
 <?php
 // Starts the session to access logged-in user information
 session_start();
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
 
 // Includes the database connection file
 include 'includes/db.php';
@@ -123,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="error-message"><?php echo $error; ?></p>
         <?php endif; ?>
 
-        <form action="" method="POST" onsubmit="return validateForm();">
+        <form action="" method="POST">
 
             <p>
                 <label for="username">Full Name:</label><br>
