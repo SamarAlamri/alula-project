@@ -51,10 +51,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Executes the query and displays the appropriate message
         if ($stmt->execute()) {
-            $success = "Feedback submitted successfully. Thank you for sharing your experience!";
-        } else {
-            $error = "Something went wrong. Please try again.";
-        }
+
+    // Email subject
+    $subject = "AlUla 360 Feedback Confirmation";
+
+    // Email content
+    $emailBody = "Dear " . $name . ",\n\n";
+    $emailBody .= "Thank you for submitting your feedback to AlUla 360.\n\n";
+    $emailBody .= "We received the following feedback:\n\n";
+    $emailBody .= $message . "\n\n";
+    $emailBody .= "Best regards,\n";
+    $emailBody .= "AlUla 360 Team";
+
+    // Email headers
+    $headers = "From: no-reply@alula360.com";
+
+    // Sends confirmation email
+    if (mail($email, $subject, $emailBody, $headers)) {
+        $success = "Feedback submitted successfully. A confirmation email has been sent.";
+    } else {
+        $success = "Feedback submitted successfully, but the email could not be sent.";
+    }
+
+} else {
+    $error = "Something went wrong. Please try again.";
+}
     }
 }
 ?>
