@@ -4,7 +4,12 @@ session_start();
 
 // Includes the database connection file
 include 'includes/db.php';
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+require 'phpmailer/Exception.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 // Variables used to display success or error messages
 $success = "";
 $error = "";
@@ -49,28 +54,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("is", $user_id, $message);
 
-        // Executes the query and displays the appropriate message
-        if ($stmt->execute()) {
+    // Executes the query and displays the appropriate message
+if ($stmt->execute()) {
 
-    // Email subject
-    $subject = "AlUla 360 Feedback Confirmation";
+    $mail = new PHPMailer(true);
 
-    // Email content
-    $emailBody = "Dear " . $name . ",\n\n";
-    $emailBody .= "Thank you for submitting your feedback to AlUla 360.\n\n";
-    $emailBody .= "We received the following feedback:\n\n";
-    $emailBody .= $message . "\n\n";
-    $emailBody .= "Best regards,\n";
-    $emailBody .= "AlUla 360 Team";
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
 
-    // Email headers
-    $headers = "From: no-reply@alula360.com";
+        $mail->Username = 'alula360project@gmail.com';
+        $mail->Password = 'qsmnagcqxgavgnmn';
 
-    // Sends confirmation email
-    if (mail($email, $subject, $emailBody, $headers)) {
-        $success = "Feedback submitted successfully. A confirmation email has been sent.";
-    } else {
-        $success = "Feedback submitted successfully, but the email could not be sent.";
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom('alula360project@gmail.com', 'AlUla 360');
+        $mail->addAddress($email, $name);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'AlUla 360 Feedback Confirmation';
+
+        $mail->Body = "
+    <div style='font-family: Arial, sans-serif; line-height: 1.7; color: #4a3a33;'>
+
+        <h2 style='color:#7a3b1d;'>Thank You for Your Feedback!</h2>
+
+        <p>Dear <strong>$name</strong>,</p>
+
+        <p>
+            Thank you for sharing your experience with AlUla 360.
+            Your feedback is valuable to us and helps improve our platform and visitor experience.
+        </p>
+
+        <p>
+            We appreciate your time and hope you enjoyed exploring the beauty,
+            culture, and heritage of AlUla.
+        </p>
+
+        <hr>
+
+        <h3 style='color:#7a3b1d;'>Your Submitted Feedback</h3>
+
+        <pre style='background:#fdfaf5; padding:15px; border-radius:8px; border:1px solid #d4a373;'>
+$message
+        </pre>
+
+        <p>
+            Thank you again for supporting AlUla 360.
+        </p>
+
+        <br>
+
+        <p>
+            Best regards,<br>
+            <strong>AlUla 360 Team</strong>
+        </p>
+
+    </div>
+";
+
+        $mail->send();
+
+        $success = "Feedback submitted successfully. Confirmation email sent.";
+
+    } catch (Exception $e) {
+        $success = "Feedback saved, but email could not be sent.";
     }
 
 } else {
