@@ -321,3 +321,87 @@ if (uploadCsvForm) {
         });
     });
 }
+// =========================
+// Smooth Scroll Effect
+// =========================
+
+// Adds smooth scrolling to internal links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener('click', function (e) {
+
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+
+    });
+
+});
+
+
+// =========================
+// Success Message Animation
+// =========================
+
+// Displays success messages smoothly
+const successMessage = document.querySelector(".success-message");
+
+if (successMessage) {
+
+    successMessage.style.opacity = "0";
+
+    setTimeout(() => {
+        successMessage.style.transition = "opacity 0.5s ease";
+        successMessage.style.opacity = "1";
+    }, 200);
+
+}
+
+
+// =========================
+// Navbar Shadow on Scroll
+// =========================
+
+// Adds shadow effect when scrolling
+window.addEventListener("scroll", function () {
+
+    const nav = document.querySelector("nav");
+
+    if (window.scrollY > 50) {
+
+        nav.style.boxShadow = "0 2px 10px rgba(0,0,0,0.15)";
+        nav.style.backgroundColor = "rgba(122, 59, 29, 0.95)";
+
+    } else {
+
+        nav.style.boxShadow = "none";
+        nav.style.backgroundColor = "transparent";
+
+    }
+
+});
+
+
+// =========================
+// Loading Button Effect
+// =========================
+
+// Adds loading effect to forms
+document.querySelectorAll("form").forEach(form => {
+
+    form.addEventListener("submit", function () {
+
+        const submitButton = form.querySelector('input[type="submit"]');
+
+        if (submitButton) {
+
+            submitButton.value = "Submitting...";
+            submitButton.disabled = true;
+
+        }
+
+    });
+
+});
