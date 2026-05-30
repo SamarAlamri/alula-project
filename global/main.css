@@ -730,3 +730,60 @@ input[type="submit"]:hover {
     color: #7a3b1d;
     font-weight: bold;
 }
+/* ========================= */
+/* Success & Error Messages */
+/* ========================= */
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+/* ========================= */
+/* Sticky Navigation */
+/* ========================= */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px;
+    transition: 0.3s ease;
+}
+
+
+/* ========================= */
+/* Button Hover Animation */
+/* ========================= */
+
+.select-btn,
+input[type="submit"] {
+
+    transition: all 0.3s ease;
+
+}
+
+.select-btn:hover,
+input[type="submit"]:hover {
+
+    transform: translateY(-2px);
+
+}
