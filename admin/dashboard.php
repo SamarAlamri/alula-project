@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+if (isset($_GET['logout'])) {
+
+    session_unset();
+    session_destroy();
+
+    header("Location: ../pages/login.php");
+    exit();
+}
+
 include "../includes/db.php";
 ?>
 
@@ -8,53 +18,58 @@ include "../includes/db.php";
 <head>
     <meta charset="UTF-8">
     <title>Manage Tours</title>
-    <link rel="stylesheet" href="../global/main.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
 
-    <h1>Manage Tours</h1>
+<nav class="admin-navbar">
+    <div class="admin-logo">AlUla Admin</div>
 
-    <!-- Add Tour Form -->
-    <section>
+    <div class="admin-links">
+        <a href="dashboard.php" class="active">Dashboard</a>
+        <a href="users.php">Users</a>
+        <a href="../index.php">View Website</a>
+        <a href="dashboard.php?logout=true"> Logout</a>
+    </div>
+</nav>
+
+<section class="admin-banner">
+    <h1>Manage Tours</h1>
+    <p>Add, edit and manage AlUla tours</p>
+</section>
+
+<div class="admin-container">
+
+    <div class="admin-form">
         <h2>Add New Tour</h2>
 
         <form id="addTourForm" method="POST" enctype="multipart/form-data">
-           
             <input type="hidden" name="tour_id" id="tour_id">
 
-            <p>
-                <label>Tour Title:</label><br>
-                <input type="text" name="title" required>
-            </p>
+            <label>Tour Title:</label>
+            <input type="text" name="title" required>
 
-            <p>
-                <label>Description:</label><br>
-                <textarea name="description" required></textarea>
-            </p>
+            <label>Description:</label>
+            <textarea name="description" required></textarea>
 
-            <p>
-                <label>Duration:</label><br>
-                <select name="duration" required>
-                    <option value="">Select duration</option>
-                    <option value="Half Day">Half Day</option>
-                    <option value="Full Day">Full Day</option>
-                </select>
-            </p>
+            <label>Duration:</label>
+            <select name="duration" required>
+                <option value="">Select duration</option>
+                <option value="Half Day">Half Day</option>
+                <option value="Full Day">Full Day</option>
+            </select>
 
-            <p>
-                <label>Category:</label><br>
-                <select name="category" required>
-                    <option value="">Select category</option>
-                    <option value="Heritage">Heritage</option>
-                    <option value="Nature">Nature</option>
-                    <option value="Adventure">Adventure</option>
-                </select>
-            </p>
+            <label>Category:</label>
+            <select name="category" required>
+                <option value="">Select category</option>
+                <option value="Heritage">Heritage</option>
+                <option value="Nature">Nature</option>
+                <option value="Adventure">Adventure</option>
+            </select>
 
-            <p>
-                <label>Price:</label><br>
-                <input type="number" name="price" step="0.01" required>
-            </p>
+            <label>Price:</label>
+            <input type="number" name="price" step="0.01" required>
 
             <h3>Tour Schedule</h3>
 
@@ -65,34 +80,35 @@ include "../includes/db.php";
                 </div>
             </div>
 
-            <button type="button" id="addScheduleRow">+ Add Schedule Row</button>
+            <button type="button" class="admin-btn" id="addScheduleRow">
+                + Add Schedule Row
+            </button>
 
             <br><br>
 
-            <button type="submit" id="submitTourButton">Add Tour</button>
+            <button type="submit" class="admin-btn" id="submitTourButton">
+                Add Tour
+            </button>
         </form>
-    </section>
+    </div>
 
-    <section>
+    <div class="admin-form">
         <h2>Upload Tours CSV</h2>
 
         <form id="uploadCsvForm" method="POST" enctype="multipart/form-data">
-            <p>
-                <label>Choose CSV File:</label><br>
-                <input type="file" name="tour_csv" accept=".csv" required>
-            </p>
+            <label>Choose CSV File:</label>
+            <input type="file" name="tour_csv" accept=".csv" required>
 
-            <button type="submit">Upload CSV</button>
+            <button type="submit" class="admin-btn">
+                Upload CSV
+            </button>
         </form>
-    </section>
-    
-    <hr>
+    </div>
 
-    <!-- Existing Tours -->
-    <section>
+    <div class="admin-form">
         <h2>Existing Tours</h2>
 
-        <table border="1" cellpadding="8">
+        <table class="admin-table">
             <thead>
                 <tr>
                     <th>Tour Title</th>
@@ -105,24 +121,17 @@ include "../includes/db.php";
             </thead>
 
             <tbody id="tourTableBody">
-
                 <?php
-
                 $sql = "SELECT * FROM tours ORDER BY created_at DESC";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-
                     while ($tour = $result->fetch_assoc()) {
-
                         echo "<tr>";
 
                         echo "<td>" . htmlspecialchars($tour['title']) . "</td>";
-
                         echo "<td>" . htmlspecialchars($tour['category']) . "</td>";
-
                         echo "<td>" . htmlspecialchars($tour['duration']) . "</td>";
-
                         echo "<td>$" . htmlspecialchars($tour['price']) . "</td>";
 
                         echo "<td>";
@@ -137,7 +146,6 @@ include "../includes/db.php";
                         $scheduleResult = $scheduleStmt->get_result();
 
                         while ($schedule = $scheduleResult->fetch_assoc()) {
-
                             echo htmlspecialchars($schedule['time']) .
                                 " - " .
                                 htmlspecialchars($schedule['activity']) .
@@ -146,10 +154,9 @@ include "../includes/db.php";
 
                         echo "</td>";
 
-                        $tourJson = htmlspecialchars(json_encode($tour), ENT_QUOTES, 'UTF-8');
-                        
                         echo "<td>";
-                        echo "<button type='button' onclick=\"editTour(
+
+                        echo "<button type='button' class='admin-btn' onclick=\"editTour(
                             '" . $tour['id'] . "',
                             '" . addslashes(htmlspecialchars($tour['title'], ENT_QUOTES)) . "',
                             '" . addslashes(htmlspecialchars($tour['description'], ENT_QUOTES)) . "',
@@ -157,23 +164,25 @@ include "../includes/db.php";
                             '" . htmlspecialchars($tour['category'], ENT_QUOTES) . "',
                             '" . htmlspecialchars($tour['price'], ENT_QUOTES) . "',
                             this
-                        )\">Edit</button>";
-                        echo "<button type='button' onclick='deleteTour(" . $tour['id'] . ")'>Delete</button>";
+                        )\">Edit</button> ";
+
+                        echo "<button type='button' class='admin-btn' onclick='deleteTour(" . $tour['id'] . ")'>Delete</button>";
+
                         echo "</td>";
 
                         echo "</tr>";
                     }
-
                 } else {
-
                     echo '<tr><td colspan="6">No tours found.</td></tr>';
                 }
-
                 ?>
-
             </tbody>
         </table>
-    </section>
-    <script src="../scripts/main.js"></script>
+    </div>
+
+</div>
+
+<script src="../scripts/main.js"></script>
+
 </body>
 </html>

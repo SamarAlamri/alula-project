@@ -1,0 +1,191 @@
+/* ========================= */
+/* Admin Global Styling */
+/* ========================= */
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background-color:#f4f4f4;
+color:#4a3a33;
+margin:0;
+padding:0;
+}
+
+/* ========================= */
+/* Admin Navbar */
+/* ========================= */
+
+.admin-navbar{
+background-color:#7a3b1d !important;
+padding:20px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.admin-logo{
+color:white;
+font-size:24px;
+font-weight:bold;
+}
+
+.admin-links a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-size:14px;
+font-weight:600;
+letter-spacing:1px;
+text-transform:uppercase;
+border-bottom:2px solid transparent;
+padding-bottom:6px;
+transition:0.3s;
+}
+
+.admin-links a:hover,
+.admin-links a.active{
+border-bottom:2px solid #d4a373;
+}
+
+/* ========================= */
+/* Admin Banner */
+/* ========================= */
+
+.admin-banner{
+background:linear-gradient(135deg,#7a3b1d,#d4a373);
+color:white;
+padding:70px 60px;
+text-align: center;
+}
+
+.admin-banner h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.admin-banner p{
+font-size:18px;
+opacity:0.9;
+}
+
+/* ========================= */
+/* Main Content */
+/* ========================= */
+
+.admin-container{
+max-width:1400px;
+margin:0 auto;
+padding:50px;
+}
+
+/* ========================= */
+/* Tours Form */
+/* ========================= */
+
+.admin-form{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+margin-bottom:30px;
+width:100%;
+}
+
+.admin-form h2{
+margin-top:0;
+color:#5a1a0a;
+}
+
+.admin-form h3{
+color:#5a1a0a;
+margin-top:30px;
+}
+
+.admin-form label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+color:#7a3b1d;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form input[type="time"],
+.admin-form input[type="file"],
+.admin-form textarea,
+.admin-form select{
+width:100%;
+display:block;
+padding:14px;
+border:1px solid #d4a373;
+border-radius:8px;
+margin-bottom:20px;
+background:#fdfaf5;
+font-family:Arial, sans-serif;
+font-size:16px;
+}
+
+.admin-form textarea{
+min-height:120px;
+resize:vertical;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus{
+outline:none;
+border-color:#7a3b1d;
+box-shadow:0 0 6px rgba(122,59,29,0.2);
+}
+
+/* ========================= */
+/* Buttons */
+/* ========================= */
+
+.admin-btn{
+background-color:#7a3b1d;
+color:white;
+border:none;
+padding:12px 24px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.admin-btn:hover{
+background-color:#5a1a0a;
+}
+
+/* ========================= */
+/* Tables */
+/* ========================= */
+
+.admin-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:30px;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.admin-table th{
+background-color:#7a3b1d;
+color:white;
+padding:16px;
+text-align:left;
+}
+
+.admin-table td{
+padding:16px;
+border-bottom:1px solid #eee;
+}
+
+.admin-table tr:hover{
+background-color:#fdfaf5;
+}

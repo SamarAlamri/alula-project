@@ -1,84 +1,58 @@
 <?php
-// Starts the session to track logged-in users
 session_start();
+if (isset($_GET['logout'])) {
+
+    session_unset();
+    session_destroy();
+
+    header("Location: pages/login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <!-- Defines the character encoding -->
     <meta charset="UTF-8">
-
-    <!-- Title shown in the browser tab -->
     <title>AlUla 360 - Home</title>
-
-    <!-- Links the external CSS stylesheet -->
     <link rel="stylesheet" href="global/main.css">
-
 </head>
 
 <body>
 
-<!-- ========================= -->
-<!-- Hero Header Section -->
-<!-- ========================= -->
-
 <header id="main-hero">
-
-    <!-- Dark overlay placed over the background image -->
     <div class="hero-overlay">
-
-        <!-- Hero content container -->
         <div class="hero-content">
-
-            <!-- Main website title -->
             <h1>AlUla 360</h1>
-
-            <!-- Short description under the title -->
             <p>A world of revitalisation, heritage, and adventure</p>
 
-            <!-- ========================= -->
-            <!-- Navigation Menu -->
-            <!-- ========================= -->
-
             <nav>
-
-                <!-- Navigation links -->
                 <a href="index.php">Home</a>
-
                 <a href="about.php">About</a>
-
                 <a href="tours.php">Tours</a>
-
                 <a href="mytour.php">My Tour</a>
-
                 <a href="feedback.php">Feedback</a>
 
-                <!-- Checks if the user is logged in -->
                 <?php if (isset($_SESSION['user_id'])): ?>
 
-    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <a href="admin/dashboard.php">Dashboard</a>
-    <?php endif; ?>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        <a href="admin/dashboard.php">Dashboard</a>
+                    <?php endif; ?>
 
-    <a href="pages/logout.php">Logout</a>
+                    <a href="index.php?logout=true">Logout</a>
 
-<?php else: ?>
+                <?php else: ?>
 
-    <a href="pages/login.php">Login</a>
+                    <a href="pages/login.php">Login</a>
+                    <a href="pages/register.php">Register</a>
 
-    <a href="pages/register.php">Register</a>
-
-<?php endif; ?>
-
+                <?php endif; ?>
             </nav>
 
         </div>
     </div>
 </header>
-
 <!-- ========================= -->
 <!-- Main Content Section -->
 <!-- ========================= -->

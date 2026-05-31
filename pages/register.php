@@ -7,11 +7,6 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = trim($_POST['name']);
-
-    if (strpos($name, ' ') !== false) {
-        $message = "Username cannot contain spaces.";
-    }
-
     $email = trim($_POST['email']);
     $plain_password = $_POST['password'];
 
@@ -30,8 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         $hashed_password = password_hash($plain_password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO users (name, email, password)
-                VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $name, $email, $hashed_password);
@@ -70,19 +64,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" id="pass" name="password" required minlength="8">
             </p>
             <p>
-                
                 <input type="submit" value="Sign Up">
-                
             </p>
         </form>
         <p>Already have an account? <a href="login.php">SignIn here</a></p>
+        
+        <?php if (!empty($message)) { ?>
+            <p style="color: red; margin-top: 15px; font-weight: bold;"><?php echo $message; ?></p>
+        <?php } ?>
     </div>
 
-    <?php if (!empty($message)) { ?>
-    <p><?php echo $message; ?></p>
-    <?php } ?>
-
     <script src="../scripts/main.js"></script>
-    
 </body>
 </html>
