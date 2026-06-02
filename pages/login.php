@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
             </p>
         </form>
-        <p style="text-align: center !important;">Don't Have An Account? <a href="register.php">Signup</a></p>
+        <p style="text-align: center !important;">Don't Have An Account? <a href="register.php">SignUp</a></p>
     </div>
 
     <?php if (!empty($message)) { ?>

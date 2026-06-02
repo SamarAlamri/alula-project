@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
 
         <p style="text-align: center !important;">
-            Already have an account? <a href="login.php">Signin</a>
+            Already have an account? <a href="login.php">SignIn</a>
         </p>
         
         <?php if (!empty($message)) { ?>
