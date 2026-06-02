@@ -4,7 +4,7 @@
 include "../includes/auth.php";
 requireLogin();
 
-include "../includes/auth.php"; 
+include "../includes/db.php"; 
 
 $user_id = $_SESSION['user_id'];
 
@@ -72,11 +72,20 @@ include "../includes/header.php";
         if ($result->num_rows > 0) {
             while ($tour = $result->fetch_assoc()) {
 
-                echo "<h3>" . htmlspecialchars($tour['title']) . "</h3>";
-                echo "<p>" . htmlspecialchars($tour['description']) . "</p>";
+                echo "<div class='itinerary-container'>";
+                echo "<table class='modern-table'>";
+                echo "<h2 style='text-align: left !important;'>"
+                    . htmlspecialchars($tour['title'])
+                    . " (" . htmlspecialchars($tour['duration']) . ")"
+                    . "</h2>";
 
-                echo "<table border='1' width='100%'>";
-                echo "<tr><th>Time</th><th>Activity</th></tr>";
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>Time</th>";
+                echo "<th>Activity</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
 
                 $scheduleSql = "SELECT * FROM tour_schedule WHERE tour_id = ? ORDER BY time";
                 $scheduleStmt = $conn->prepare($scheduleSql);
@@ -91,7 +100,9 @@ include "../includes/header.php";
                     echo "</tr>";
                 }
 
-                echo "</table><hr>";
+                echo "</tbody>";
+                echo "</table>";
+                echo "</div>";
             }
         } else {
             echo "<p>Your tour list is empty.</p>";
