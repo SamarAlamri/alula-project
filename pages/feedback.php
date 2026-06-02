@@ -1,8 +1,6 @@
 <!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
 
 <?php
-// Starts the session to access logged-in user information
-session_start();
 
 // Includes the database connection file
 include '../includes/db.php';
@@ -138,7 +136,7 @@ $message
 <head>
     <meta charset="UTF-8">
     <title>AlUla 360 - Feedback</title>
-    <link rel="stylesheet" href="../global/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>

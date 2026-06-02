@@ -38,10 +38,10 @@ if (isset($_GET['tour_id'])) {
     <title>AlUla 360 - Tour Schedule</title>
 
     <!-- Link to the main stylesheet used for screen display -->
-    <link rel="stylesheet" href="../global/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 
     <!-- Link to a special stylesheet used when the page is printed -->
-    <link rel="stylesheet" href="../global/print.css" media="print">
+    <link rel="stylesheet" href="../css/print.css" media="print">
 
 </head>
 

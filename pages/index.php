@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AlUla 360 - Home</title>
-    <link rel="stylesheet" href="../global/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>

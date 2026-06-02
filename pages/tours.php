@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 <title>Explore AlUla - Themed Journeys</title>
 
 <!-- Link to the main CSS file -->
-<link rel="stylesheet" href="../global/main.css">
+<link rel="stylesheet" href="../css/main.css">
 
 </head>
 

@@ -22,7 +22,7 @@ include "../includes/header.php";
 <title>Explore AlUla - History</title>
 
 <!-- Linking the external CSS file that controls the design of the website -->
-<link rel="stylesheet" href="../global/main.css">
+<link rel="stylesheet" href="../css/main.css">
 
 </head>
 

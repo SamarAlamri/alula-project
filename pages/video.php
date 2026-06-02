@@ -20,7 +20,7 @@ include "../includes/header.php";
 <title>Explore AlUla - Video</title>
 
 <!-- Linking the CSS file -->
-<link rel="stylesheet" href="../global/main.css">
+<link rel="stylesheet" href="../css/main.css">
 
 </head>
 
