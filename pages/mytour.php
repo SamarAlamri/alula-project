@@ -4,7 +4,7 @@
 include "../includes/auth.php";
 requireLogin();
 
-include "../includes/auth.php"; 
+include "../includes/db.php"; 
 
 $user_id = $_SESSION['user_id'];
 
