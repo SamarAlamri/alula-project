@@ -1,8 +1,10 @@
 <!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-
 <?php
 
+// Check if the current user is an admin
 include "../includes/admin-auth.php";
+
+// Database connection
 include "../includes/db.php";
 ?>
 
@@ -10,12 +12,17 @@ include "../includes/db.php";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Page title -->
     <title>Manage Tours</title>
+
+    <!-- Admin stylesheet -->
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body>
 
+<!-- Admin navigation bar -->
 <nav class="admin-navbar">
     <div class="admin-logo">AlUla Admin</div>
 
@@ -27,6 +34,7 @@ include "../includes/db.php";
     </div>
 </nav>
 
+<!-- Page banner -->
 <section class="admin-banner">
     <h1>Manage Tours</h1>
     <p>Add, edit and manage AlUla tours</p>
@@ -34,10 +42,13 @@ include "../includes/db.php";
 
 <div class="admin-container">
 
+    <!-- Add tour form -->
     <div class="admin-form">
         <h2>Add New Tour</h2>
 
         <form id="addTourForm" method="POST" enctype="multipart/form-data">
+
+            <!-- Hidden field for editing tours -->
             <input type="hidden" name="tour_id" id="tour_id">
 
             <label>Tour Title:</label>
@@ -64,6 +75,7 @@ include "../includes/db.php";
             <label>Price:</label>
             <input type="number" name="price" step="0.01" required>
 
+            <!-- Tour schedule section -->
             <h3>Tour Schedule</h3>
 
             <div id="scheduleRows">
@@ -73,22 +85,26 @@ include "../includes/db.php";
                 </div>
             </div>
 
+            <!-- Add new schedule row button -->
             <button type="button" class="admin-btn" id="addScheduleRow">
                 + Add Schedule Row
             </button>
 
             <br><br>
 
+            <!-- Submit form button -->
             <button type="submit" class="admin-btn" id="submitTourButton">
                 Add Tour
             </button>
         </form>
     </div>
 
+    <!-- CSV upload form -->
     <div class="admin-form">
         <h2>Upload Tours CSV</h2>
 
         <form id="uploadCsvForm" method="POST" enctype="multipart/form-data">
+
             <label>Choose CSV File:</label>
             <input type="file" name="tour_csv" accept=".csv" required>
 
@@ -98,6 +114,7 @@ include "../includes/db.php";
         </form>
     </div>
 
+    <!-- Existing tours table -->
     <div class="admin-form">
         <h2>Existing Tours</h2>
 
@@ -115,13 +132,19 @@ include "../includes/db.php";
 
             <tbody id="tourTableBody">
                 <?php
+
+                // Retrieve all tours
                 $sql = "SELECT * FROM tours ORDER BY created_at DESC";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
+
+                    // Loop through each tour
                     while ($tour = $result->fetch_assoc()) {
+
                         echo "<tr>";
 
+                        // Display tour details
                         echo "<td>" . htmlspecialchars($tour['title']) . "</td>";
                         echo "<td>" . htmlspecialchars($tour['category']) . "</td>";
                         echo "<td>" . htmlspecialchars($tour['duration']) . "</td>";
@@ -131,6 +154,7 @@ include "../includes/db.php";
 
                         $tourId = $tour['id'];
 
+                        // Get schedule for current tour
                         $scheduleSql = "SELECT * FROM tour_schedule WHERE tour_id = ?";
                         $scheduleStmt = $conn->prepare($scheduleSql);
                         $scheduleStmt->bind_param("i", $tourId);
@@ -138,6 +162,7 @@ include "../includes/db.php";
 
                         $scheduleResult = $scheduleStmt->get_result();
 
+                        // Display schedule rows
                         while ($schedule = $scheduleResult->fetch_assoc()) {
                             echo htmlspecialchars($schedule['time']) .
                                 " - " .
@@ -149,6 +174,7 @@ include "../includes/db.php";
 
                         echo "<td>";
 
+                        // Edit button
                         echo "<button type='button' class='admin-btn' onclick=\"editTour(
                             '" . $tour['id'] . "',
                             '" . addslashes(htmlspecialchars($tour['title'], ENT_QUOTES)) . "',
@@ -159,13 +185,17 @@ include "../includes/db.php";
                             this
                         )\">Edit</button> ";
 
+                        // Delete button
                         echo "<button type='button' class='admin-btn' onclick='deleteTour(" . $tour['id'] . ")'>Delete</button>";
 
                         echo "</td>";
 
                         echo "</tr>";
                     }
+
                 } else {
+
+                    // Show message if no tours exist
                     echo '<tr><td colspan="6">No tours found.</td></tr>';
                 }
                 ?>
@@ -175,6 +205,7 @@ include "../includes/db.php";
 
 </div>
 
+<!-- Main JavaScript file -->
 <script src="../scripts/main.js"></script>
 
 </body>
