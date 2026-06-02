@@ -1,3 +1,5 @@
+<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
+
 <?php
 
 include "../includes/admin-auth.php";
@@ -9,7 +11,7 @@ include "../includes/db.php";
 <head>
     <meta charset="UTF-8">
     <title>Manage Tours</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body>

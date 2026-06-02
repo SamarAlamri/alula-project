@@ -1,3 +1,5 @@
+<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
+
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -20,10 +22,17 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="feedback.php">Feedback</a>
 
                 <?php if (isset($_SESSION['user_id'])): ?>
+
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                       <a href="../admin/dashboard.php">Dashboard</a>
+                    <?php endif; ?>
+
                     <a href="logout.php">Logout</a>
+
                 <?php else: ?>
+
                     <a href="login.php">Login</a>
-                    <a href="register.php">Register</a>
+
                 <?php endif; ?>
             </nav>
 
