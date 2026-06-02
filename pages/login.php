@@ -64,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Login</h2>
         <form action="login.php" method="POST">
             <p>
-                <label for="email">Email:</label><br>
+                <label for="email">Email</label><br>
                 <input type="email" id="email" name="email" required>
             </p>
 
             <p>
-                <label for="Signin-pass">Password:</label><br>
+                <label for="Signin-pass">Password</label><br>
                 <input type="password" id="Signin-pass" name="password" required>
             </p>
             <p>
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
             </p>
         </form>
-        <p>Don't Have An Account? <a href="register.php">SignUp here</a></p>
+        <p style="text-align: center !important;">Don't Have An Account? <a href="register.php">Signup</a></p>
     </div>
 
     <?php if (!empty($message)) { ?>

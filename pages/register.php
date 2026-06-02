@@ -55,27 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Create an Account</h2>
         <form action="register.php" method="POST" onsubmit="return validateRegisterForm()">
             <p>
-                <label for="new-user">Username:</label><br>
+                <label for="new-user">Username</label><br>
                 <input type="text" id="new-user" name="name" required>
             </p>
             <p>
-                <label for="new-email">Email:</label><br>
+                <label for="new-email">Email</label><br>
                 <input type="email" id="new-email" name="email" required>
             </p>
             <p>
-                <label for="pass">Password:</label><br>
+                <label for="pass">Password</label><br>
                 <input type="password" 
                     id="pass" 
                     name="password" 
                     required 
-                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" 
-                    title="Must contain at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&), and be at least 8 characters long.">
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                
+                <ul id="password-requirements" style="list-style: none; padding: 0; margin-top: 8px; font-size: 0.9em;">
+                    <li id="req-length" style="color: red;">❌ At least 8 characters</li>
+                    <li id="req-uppercase" style="color: red;">❌ At least one uppercase letter (A-Z)</li>
+                    <li id="req-lowercase" style="color: red;">❌ At least one lowercase letter (a-z)</li>
+                    <li id="req-number" style="color: red;">❌ At least one number (0-9)</li>
+                    <li id="req-special" style="color: red;">❌ At least one special character (@$!%*?&)</li>
+                </ul>
             </p>
             <p>
                 <input type="submit" value="Sign Up">
             </p>
         </form>
-        <p>Already have an account? <a href="login.php">SignIn here</a></p>
+        <p style="text-align: center !important;">Already have an account? <a href="login.php">Signin</a></p>
         
         <?php if (!empty($message)) { ?>
             <p style="color: red; margin-top: 15px; font-weight: bold;"><?php echo $message; ?></p>

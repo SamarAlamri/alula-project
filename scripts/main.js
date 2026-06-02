@@ -131,6 +131,49 @@ function validateRegisterForm() {
     return true;
 }
 
+// ==========================================
+// Real-time Password Requirements Validation
+// ==========================================
+const passwordInput = document.getElementById("pass");
+
+if (passwordInput) {
+    passwordInput.addEventListener("input", function () {
+        const val = passwordInput.value;
+
+        // Individual validation rules
+        const rules = {
+            "req-length": val.length >= 8,
+            "req-uppercase": /[A-Z]/.test(val),
+            "req-lowercase": /[a-z]/.test(val),
+            "req-number": /\d/.test(val),
+            "req-special": /[@$!%*?&]/.test(val)
+        };
+
+        // Text descriptions for resetting state easily
+        const descriptions = {
+            "req-length": "At least 8 characters",
+            "req-uppercase": "At least one uppercase letter (A-Z)",
+            "req-lowercase": "At least one lowercase letter (a-z)",
+            "req-number": "At least one number (0-9)",
+            "req-special": "At least one special character (@$!%*?&)"
+        };
+
+        // Loop through rules and update UI elements dynamically
+        for (const [id, met] of Object.entries(rules)) {
+            const element = document.getElementById(id);
+            if (element) {
+                if (met) {
+                    element.style.color = "green";
+                    element.innerHTML = "✓ " + descriptions[id];
+                } else {
+                    element.style.color = "red";
+                    element.innerHTML = "❌ " + descriptions[id];
+                }
+            }
+        }
+    });
+}
+
 const addScheduleBtn = document.getElementById("addScheduleRow");
 if (addScheduleBtn) {
     addScheduleBtn.addEventListener("click", function () {

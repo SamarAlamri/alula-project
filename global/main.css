@@ -79,41 +79,6 @@ border:none;
 
 }
 
-/* ========================= */
-/* Login Icon Styling */
-/* ========================= */
-
-#Signin-icon {
-    /* Position it relative to the <header> */
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    
-    /* Style the link */
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-#Signin-icon img {
-    /* Size the icon (adjust as needed) */
-    width: 30px; 
-    height: auto;
-    
-    /* Remove the default border you have for all images */
-    border: none;
-    
-    /* Center it above or beside the text */
-    margin: 0 auto 5px auto; 
-    display: block;
-}
-
-#Signin-icon:hover {
-    /* Hover effect from Lecture 03 */
-    text-decoration: underline;
-    opacity: 0.8;
-}
 
 
 
@@ -654,7 +619,6 @@ margin-top:0;
     background-color: #ffffff; /* Clean white for the box */
     border: 1px solid #d4a373; /* Sand-colored border */
     border-top: 5px solid #7a3b1d; /* Deep terracotta top accent */
-    text-align: center;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Optional: subtle depth */
 }
 
@@ -662,7 +626,13 @@ margin-top:0;
 #Sign-in h2 {
     color: #5a1a0a; /* Darker earth tone */
     margin-bottom: 20px;
+    text-align: center !important;
 }
+
+#Sign-in p {
+    text-align: left !important;
+}
+
 
 /* Input Fields */
 input[type="text"], 
