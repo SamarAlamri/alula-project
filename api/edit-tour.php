@@ -1,30 +1,41 @@
+<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
+
 <?php
+
+// Database connection
 include "../includes/db.php";
 
+// Response array
 $response = [
     "success" => false,
     "message" => ""
 ];
 
+// Check if request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // Get tour ID from request
     $tour_id = $_POST["tour_id"];
 
+    // Get updated tour information
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
     $duration = trim($_POST["duration"]);
     $category = trim($_POST["category"]);
     $price = $_POST["price"];
 
+    // Get updated schedule data
     $scheduleTimes = $_POST["schedule_time"];
     $scheduleActivities = $_POST["schedule_activity"];
 
+    // Validate tour ID
     if (empty($tour_id)) {
 
         $response["message"] = "Tour ID is missing.";
 
     } else {
 
+        // Update tour details
         $sql = "UPDATE tours
                 SET title = ?, description = ?, duration = ?, category = ?, price = ?
                 WHERE id = ?";
@@ -41,23 +52,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tour_id
         );
 
+        // Check if tour update was successful
         if ($stmt->execute()) {
 
+            // Delete old schedule rows
             $deleteScheduleSql = "DELETE FROM tour_schedule WHERE tour_id = ?";
             $deleteStmt = $conn->prepare($deleteScheduleSql);
             $deleteStmt->bind_param("i", $tour_id);
             $deleteStmt->execute();
 
+            // Insert updated schedule rows
             $scheduleSql = "INSERT INTO tour_schedule (tour_id, time, activity)
                             VALUES (?, ?, ?)";
 
             $scheduleStmt = $conn->prepare($scheduleSql);
 
+            // Loop through schedule rows
             for ($i = 0; $i < count($scheduleTimes); $i++) {
 
                 $time = $scheduleTimes[$i];
                 $activity = trim($scheduleActivities[$i]);
 
+                // Insert non-empty schedule entries
                 if (!empty($time) && !empty($activity)) {
 
                     $scheduleStmt->bind_param(
@@ -71,16 +87,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
 
+            // Success response
             $response["success"] = true;
             $response["message"] = "Tour updated successfully.";
 
         } else {
 
+            // Error response
             $response["message"] = "Failed to update tour.";
         }
     }
 }
 
+// Return JSON response
 header("Content-Type: application/json");
 echo json_encode($response);
+
 ?>

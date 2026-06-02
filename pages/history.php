@@ -1,3 +1,5 @@
+<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
+
 <?php
 $pageTitle = "The Sands of Time";
 $pageSubtitle = "7,000 years of human history";
