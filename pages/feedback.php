@@ -1,9 +1,9 @@
 <!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-
 <?php
 
 // Includes the database connection file
 include '../includes/db.php';
+include "../includes/auth.php";
 require '../phpmailer/PHPMailer.php';
 require '../phpmailer/SMTP.php';
 require '../phpmailer/Exception.php';
@@ -18,10 +18,8 @@ $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Checks if the user is logged in before submitting feedback
-    if (!isset($_SESSION['user_id'])) {
-
+    if (!isLoggedIn()) {
         $error = "Please login first before submitting feedback.";
-
     } else {
 
         // Gets the logged-in user's ID from the session

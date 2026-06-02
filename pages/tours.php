@@ -1,7 +1,7 @@
 <!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
 
 <?php
-session_start();
+include "../includes/auth.php";
 include "../includes/db.php";
 
 $search = isset($_GET['search']) ? trim($_GET['search']) : "";
@@ -89,7 +89,18 @@ include "../includes/header.php";
             echo "<p><strong>Category:</strong> " . htmlspecialchars($tour['category']) . "</p>";
             echo "<p><strong>Duration:</strong> " . htmlspecialchars($tour['duration']) . "</p>";
             echo "<p><strong>Price:</strong> " . htmlspecialchars($tour['price']) . " SAR</p>";
-            echo "<a href='mytour.php?tour_id=" . $tour['id'] . "'><button class='select-btn'>Book Tour</button></a>";
+            if (isLoggedIn()) {
+
+                echo "<a href='mytrip.php?tour_id=" . $tour['id'] . "'>
+                        <button class='select-btn'>Book Tour</button>
+                    </a>";
+
+            } else {
+
+                echo "<button type='button' class='select-btn login-required-btn'>
+                        Book Tour
+                    </button>";
+            }
             echo "</section>";
         }
     } else {

@@ -2,7 +2,8 @@
 <?php
 
 // Check if the current user is an admin
-include "../includes/admin-auth.php";
+include "../includes/auth.php";
+requireAdmin();
 
 // Database connection
 include "../includes/db.php";

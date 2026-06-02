@@ -501,3 +501,20 @@ if (searchInput) {
     categoryFilter.addEventListener("change", liveSearchTours);
     durationFilter.addEventListener("change", liveSearchTours);
 }
+
+// ==========================================
+// Protected Booking Buttons Check
+// ==========================================
+const loginRequiredButtons = document.querySelectorAll(".login-required-btn");
+
+if (loginRequiredButtons.length > 0) {
+    loginRequiredButtons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            // Prevent native link navigation or form submission if applicable
+            event.preventDefault(); 
+            
+            alert("Please sign in to book a tour.");
+            window.location.href = "login.php";
+        });
+    });
+}

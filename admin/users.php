@@ -2,7 +2,8 @@
 <?php
 
 // Check admin access
-include "../includes/admin-auth.php";
+include "../includes/auth.php";
+requireAdmin();
 
 // Database connection
 include "../includes/db.php";
