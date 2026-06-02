@@ -653,6 +653,14 @@ input[type="password"]:focus {
     outline: none;
 }
 
+/* Email Error Message */
+.email-error{
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: left !important;
+}
 /* Forgot Password Link */
 .forgot-password{
     text-align: right !important;
