@@ -21,6 +21,7 @@ function validateForm() {
 
     /* Variable used for looping through the rating options */
     var i;
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 
     /* Check if name or email fields are empty */
@@ -33,14 +34,14 @@ function validateForm() {
         return false;
     }
 
+    if (name.length < 2) {
+        alert("Please enter a valid name.");
+        return false;
+    }
 
     /* Check if the email address contains the "@" symbol */
-    if (email.indexOf("@") === -1) {
-
-        /* Alert user to enter a valid email */
+   if (!emailPattern.test(email)) {
         alert("Please enter a valid email address.");
-
-        /* Prevent form submission */
         return false;
     }
 
@@ -96,86 +97,86 @@ function validateRegisterForm() {
     var email = document.getElementById("new-email").value;
     var password = document.getElementById("pass").value;
 
+    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if (name === "" || email === "" || password === "") {
         alert("All fields must be filled out.");
         return false;
     }
 
+    // 1. Username Validation: No spaces, and at least 4 characters long
+    if (name.length < 4) {
+        alert("Username must be at least 4 characters long.");
+        return false;
+    }
     if (name.includes(" ")) {
         alert("Username cannot contain spaces.");
         return false;
     }
 
-    if (email.indexOf("@") === -1) {
-        alert("Please enter a valid email address.");
-        return false;
+    
+    if (!emailPattern.test(email)) {
+    /* Alert user to enter a valid, complete email */
+    alert("Please enter a valid and complete email address (e.g., name@example.com).");
+
+    return false;
     }
 
-    if (password.length < 8) {
-        alert("Password must be at least 8 characters.");
-        return false;
+    if (!passwordPattern.test(password)) {
+    alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&).");
+    return false;
     }
 
     return true;
 }
 
-document.getElementById("addScheduleRow").addEventListener("click", function () {
-
-    const scheduleRows = document.getElementById("scheduleRows");
-
-    const newRow = document.createElement("div");
-
-    newRow.classList.add("schedule-row");
-
-    newRow.innerHTML = `
-        <input type="time" name="schedule_time[]" required>
-        <input type="text" name="schedule_activity[]" placeholder="Activity" required>
-        <button type="button" onclick="this.parentElement.remove()">Remove</button>
-    `;
-
-    scheduleRows.appendChild(newRow);
-});
-
-document.getElementById("addTourForm").addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const form = document.getElementById("addTourForm");
-    const formData = new FormData(form);
-
-    const tourId = document.getElementById("tour_id").value;
-    const apiUrl = tourId ? "../api/edit-tour.php" : "../api/add-tour.php";
-
-    fetch(apiUrl, {
-        method: "POST",
-        body: formData
-    })
-
-    .then(response => response.json())
-
-    .then(data => {
-
-        alert(data.message);
-
-        if (data.success) {
-
-            form.reset();
-
-            document.getElementById("scheduleRows").innerHTML = `
-                <div class="schedule-row">
-                    <input type="time" name="schedule_time[]" required>
-                    <input type="text" name="schedule_activity[]" placeholder="Activity" required>
-                </div>
-            `;
-        }
-    })
-
-    .catch(error => {
-
-        alert("Something went wrong.");
-        console.error(error);
+const addScheduleBtn = document.getElementById("addScheduleRow");
+if (addScheduleBtn) {
+    addScheduleBtn.addEventListener("click", function () {
+        const scheduleRows = document.getElementById("scheduleRows");
+        const newRow = document.createElement("div");
+        newRow.classList.add("schedule-row");
+        newRow.innerHTML = `
+            <input type="time" name="schedule_time[]" required>
+            <input type="text" name="schedule_activity[]" placeholder="Activity" required>
+            <button type="button" onclick="this.parentElement.remove()">Remove</button>
+        `;
+        scheduleRows.appendChild(newRow);
     });
-});
+}
+
+const addTourForm = document.getElementById("addTourForm");
+if (addTourForm) {
+    addTourForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(addTourForm);
+        const tourId = document.getElementById("tour_id").value;
+        const apiUrl = tourId ? "../api/edit-tour.php" : "../api/add-tour.php";
+
+        fetch(apiUrl, {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.success) {
+                addTourForm.reset();
+                document.getElementById("scheduleRows").innerHTML = `
+                    <div class="schedule-row">
+                        <input type="time" name="schedule_time[]" required>
+                        <input type="text" name="schedule_activity[]" placeholder="Activity" required>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            alert("Something went wrong.");
+            console.error(error);
+        });
+    });
+}
 
 function deleteTour(tourId) {
 
@@ -405,3 +406,55 @@ document.querySelectorAll("form").forEach(form => {
     });
 
 });
+
+const searchInput = document.getElementById("searchInput");
+const categoryFilter = document.getElementById("categoryFilter");
+const durationFilter = document.getElementById("durationFilter");
+const toursContainer = document.getElementById("toursContainer");
+
+function liveSearchTours() {
+    if (!searchInput || !categoryFilter || !durationFilter || !toursContainer) {
+        return;
+    }
+
+    const search = searchInput.value;
+    const category = categoryFilter.value;
+    const duration = durationFilter.value;
+
+    fetch("../api/search-tours.php?search=" + encodeURIComponent(search) +
+          "&category=" + encodeURIComponent(category) +
+          "&duration=" + encodeURIComponent(duration))
+        .then(response => response.json())
+        .then(tours => {
+            toursContainer.innerHTML = "";
+
+            if (tours.length === 0) {
+                toursContainer.innerHTML = "<p>No tours found.</p>";
+                return;
+            }
+
+            tours.forEach(tour => {
+                toursContainer.innerHTML += `
+                    <section class="service-card">
+                        <h3>${tour.title}</h3>
+                        <p>${tour.description}</p>
+                        <p><strong>Category:</strong> ${tour.category}</p>
+                        <p><strong>Duration:</strong> ${tour.duration}</p>
+                        <p><strong>Price:</strong> ${tour.price} SAR</p>
+                        <a href="mytour.php?tour_id=${tour.id}">
+                            <button class="select-btn">Book Tour</button>
+                        </a>
+                    </section>
+                `;
+            });
+        })
+        .catch(error => {
+            console.error("Live search error:", error);
+        });
+}
+
+if (searchInput) {
+    searchInput.addEventListener("input", liveSearchTours);
+    categoryFilter.addEventListener("change", liveSearchTours);
+    durationFilter.addEventListener("change", liveSearchTours);
+}

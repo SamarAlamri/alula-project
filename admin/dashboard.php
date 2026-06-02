@@ -1,15 +1,6 @@
 <?php
-session_start();
 
-if (isset($_GET['logout'])) {
-
-    session_unset();
-    session_destroy();
-
-    header("Location: ../pages/login.php");
-    exit();
-}
-
+include "../includes/admin-auth.php";
 include "../includes/db.php";
 ?>
 
@@ -29,8 +20,8 @@ include "../includes/db.php";
     <div class="admin-links">
         <a href="dashboard.php" class="active">Dashboard</a>
         <a href="users.php">Users</a>
-        <a href="../index.php">View Website</a>
-        <a href="dashboard.php?logout=true"> Logout</a>
+        <a href="../pages/index.php">View Website</a>
+        <a href="../pages/logout.php">Logout</a>
     </div>
 </nav>
 

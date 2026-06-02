@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+include "../includes/admin-auth.php";
 include "../includes/db.php";
 
 if (isset($_GET['action']) && isset($_GET['id'])) {
@@ -37,8 +36,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     <div class="admin-links">
         <a href="dashboard.php">Dashboard</a>
         <a href="users.php" class="active">Users</a> 
-        <a href="../index.php">View Website</a>
-        <a href="dashboard.php?logout=true"> Logout</a>
+        <a href="../pages/index.php">View Website</a>
+        <a href="../pages/logout.php">Logout</a>
     </div>
 </nav>
 
@@ -69,7 +68,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                 if ($result && $result->num_rows > 0) {
                     while ($user = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($user['NAME']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['email']) . "</td>";
                         echo "<td><strong>" . ucfirst(htmlspecialchars($user['role'])) . "</strong></td>";
                         echo "<td style='text-align: center;'>";

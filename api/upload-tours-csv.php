@@ -18,6 +18,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fileSize = $_FILES["tour_csv"]["size"];
     $fileTmp = $_FILES["tour_csv"]["tmp_name"];
     $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $allowedMimeTypes = [
+        "text/csv",
+        "text/plain",
+        "application/vnd.ms-excel"
+    ];
+
+    $fileMimeType = mime_content_type($fileTmp);
+
+    if (!in_array($fileMimeType, $allowedMimeTypes)) {
+        $response["message"] = "Invalid file type.";
+        echo json_encode($response);
+        exit();
+    }
 
     if ($fileExt !== "csv") {
         $response["message"] = "Only CSV files are allowed.";
