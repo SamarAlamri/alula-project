@@ -24,6 +24,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                        <a href="../admin/dashboard.php">Dashboard</a>
                     <?php endif; ?>
+                   
+                   <a href="profile.php">Profile</a>
 
                     <a href="logout.php">Logout</a>
 

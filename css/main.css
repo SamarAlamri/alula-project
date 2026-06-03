@@ -652,6 +652,14 @@ input[type="password"]:focus {
     outline: none;
 }
 
+/* Email Error Message */
+.email-error{
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: left !important;
+}
 /* Forgot Password Link */
 .forgot-password{
     text-align: right !important;
@@ -868,5 +876,21 @@ input[type="submit"]:hover {
     margin: 0;             /* remove default margins */
     box-sizing: border-box;
     vertical-align: middle;
+}
     
+.profile-hero {
+    background: url('../images/feedback_pic.jpg') no-repeat center center/cover !important;
+}
+
+.profile-box {
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #7a3b1d;
+    margin-bottom: 20px;
 }
