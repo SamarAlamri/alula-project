@@ -653,4 +653,35 @@ if (document.getElementById("cancelPolicyModal")) {
     });
 }
 
+const profileUploadForm = document.getElementById("profileUploadForm");
+
+if (profileUploadForm) {
+    profileUploadForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(profileUploadForm);
+
+        fetch("../api/upload-pfp.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const message = document.getElementById("profileMessage");
+
+            message.textContent = data.message;
+            message.className = data.success ? "success-message" : "error-message";
+
+            if (data.success) {
+                document.getElementById("profileImage").src = data.image_path;
+                profileUploadForm.reset();
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("Something went wrong while uploading the profile picture.");
+        });
+    });
+}
+
     
