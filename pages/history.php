@@ -66,7 +66,7 @@ include "../includes/header.php";
             <!-- Paragraph describing the restoration of historic villages -->
             <p>
             Many historic villages have been carefully restored to preserve the
-            heritage of the region and allow visitors to experience the rich
+            heritage of the region and allow users to experience the rich
             history of AlUla.
             </p>
         </div>

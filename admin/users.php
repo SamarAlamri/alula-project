@@ -21,7 +21,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
     // Remove admin privileges
     } else if ($action == 'remove_admin') {
-        $updateSql = "UPDATE users SET role = 'visitor' WHERE id = ?";
+        $updateSql = "UPDATE users SET role = 'user' WHERE id = ?";
     }
     
     // Execute update query

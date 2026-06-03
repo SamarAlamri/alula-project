@@ -10,7 +10,7 @@ $duration = isset($_GET['duration']) ? trim($_GET['duration']) : "";
 $tour_date = isset($_GET['tour_date']) ? trim($_GET['tour_date']) : "";
 
 // Use 1=1 so appending "AND ..." always works seamlessly
-$sql = "SELECT * FROM tours WHERE 1=1";
+$sql = "SELECT * FROM tours WHERE tour_date >= CURDATE()";
 $params = [];
 $types = "";
 

@@ -39,7 +39,7 @@ include "../includes/header.php";
 
             <!-- Additional project description -->
             <p>
-                Through AlUla 360, visitors can discover tours, explore cultural landmarks,
+                Through AlUla 360, users can discover tours, explore cultural landmarks,
                 view available activities, and create their own travel experience in an easy
                 and interactive way.
             </p>

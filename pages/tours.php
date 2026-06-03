@@ -2,8 +2,10 @@
 include "../includes/auth.php";
 include "../includes/db.php";
 
-$sql = "SELECT * FROM tours ORDER BY created_at DESC";
-$result = $conn->query($sql);
+$sql = "SELECT * 
+        FROM tours
+        WHERE tour_date >= CURDATE()
+        ORDER BY tour_date ASC";
 ?>
 
 <!DOCTYPE html>

@@ -83,7 +83,7 @@ if ($stmt->execute()) {
 
         <p>
             Thank you for sharing your experience with AlUla 360.
-            Your feedback is valuable to us and helps improve our platform and visitor experience.
+            Your feedback is valuable to us and helps improve our platform and user experience.
         </p>
 
         <p>

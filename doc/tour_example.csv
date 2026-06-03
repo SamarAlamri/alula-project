@@ -1,27 +1,40 @@
-title,description,duration,category,price,time,activity
-Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,Full Day,Heritage,250,09:00,Old Town Walking Tour
-Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,Full Day,Heritage,250,11:00,Dadan Archaeological Site
-Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,Full Day,Heritage,250,13:00,Lunch Break
-Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,Full Day,Heritage,250,15:00,Hegra Heritage Site
+title,description,tour_date,duration,category,price,time,activity
+Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,2026-07-15,Full Day,Heritage,250,09:00,Old Town Walking Tour
+Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,2026-07-15,Full Day,Heritage,250,11:00,Dadan Archaeological Site
+Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,2026-07-15,Full Day,Heritage,250,13:00,Lunch Break
+Heritage Discovery Journey,Explore AlUla’s rich historical landmarks through guided cultural experiences.,2026-07-15,Full Day,Heritage,250,15:00,Hegra Heritage Site
 
-Desert Adventure Experience,Experience thrilling desert activities and breathtaking landscapes.,Half Day,Adventure,180,08:00,ATV Desert Ride
-Desert Adventure Experience,Experience thrilling desert activities and breathtaking landscapes.,Half Day,Adventure,180,09:30,Sandboarding Session
-Desert Adventure Experience,Experience thrilling desert activities and breathtaking landscapes.,Half Day,Adventure,180,11:00,Mountain Hiking
+Desert Adventure Experience,Experience thrilling desert activities and breathtaking landscapes.,2026-07-20,Half Day,Adventure,180,08:00,ATV Desert Ride
+Desert Adventure Experience,Experience thrilling desert activities and breathtaking landscapes.,2026-07-20,Half Day,Adventure,180,10:00,Rock Formation Exploration
+Desert Adventure Experience,Experience thrilling desert activities and breathtaking landscapes.,2026-07-20,Half Day,Adventure,180,12:00,Desert Photography Stop
 
-Nature Escape Retreat,Relax in AlUla’s peaceful natural scenery and oasis environment.,Half Day,Nature,150,07:30,Oasis Visit
-Nature Escape Retreat,Relax in AlUla’s peaceful natural scenery and oasis environment.,Half Day,Nature,150,09:00,Bird Watching
-Nature Escape Retreat,Relax in AlUla’s peaceful natural scenery and oasis environment.,Half Day,Nature,150,10:30,Nature Photography Stop
+Nature Escape Retreat,Relax in AlUla’s peaceful natural scenery and oasis environment.,2026-07-25,Half Day,Nature,150,09:00,Oasis Visit
+Nature Escape Retreat,Relax in AlUla’s peaceful natural scenery and oasis environment.,2026-07-25,Half Day,Nature,150,11:00,Bird Watching
+Nature Escape Retreat,Relax in AlUla’s peaceful natural scenery and oasis environment.,2026-07-25,Half Day,Nature,150,13:00,Nature Walk
 
-Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,Full Day,Heritage,300,08:30,Hegra Guided Tour
-Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,Full Day,Heritage,300,11:00,Jabal AlBanat Visit
-Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,Full Day,Heritage,300,13:30,Traditional Lunch
-Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,Full Day,Heritage,300,15:00,Nabataean History Session
+Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,2026-08-02,Full Day,Heritage,300,08:30,Jabal AlBanat Visit
+Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,2026-08-02,Full Day,Heritage,300,11:00,Traditional Lunch
+Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,2026-08-02,Full Day,Heritage,300,13:30,Nabataean History Session
+Ancient Kingdom Trail,Discover the legacy of ancient civilizations and hidden tombs.,2026-08-02,Full Day,Heritage,300,16:00,Hegra Guided Tour
 
-Canyon Adventure Tour,Enjoy outdoor adventures across AlUla’s canyons and rocky terrain.,Half Day,Adventure,220,08:00,Canyon Hiking
-Canyon Adventure Tour,Enjoy outdoor adventures across AlUla’s canyons and rocky terrain.,Half Day,Adventure,220,10:00,Rock Climbing
-Canyon Adventure Tour,Enjoy outdoor adventures across AlUla’s canyons and rocky terrain.,Half Day,Adventure,220,11:30,Desert Camp Break
+Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,2026-08-10,Full Day,Nature,210,09:00,Oasis Farm Visit
+Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,2026-08-10,Full Day,Nature,210,11:00,Palm Grove Walk
+Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,2026-08-10,Full Day,Nature,210,13:00,Traditional Lunch
+Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,2026-08-10,Full Day,Nature,210,15:00,Cultural Storytelling Session
 
-Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,Full Day,Nature,210,08:30,Palm Oasis Walk
-Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,Full Day,Nature,210,10:00,Local Farm Visit
-Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,Full Day,Nature,210,12:00,Traditional Lunch
-Golden Oasis Journey,Experience calm landscapes and authentic oasis culture.,Full Day,Nature,210,14:00,Sunset Viewpoint
+Canyon Adventure Tour,Enjoy outdoor adventures across AlUla’s canyons and rocky terrain.,2026-08-18,Half Day,Adventure,220,08:00,Canyon Hiking
+Canyon Adventure Tour,Enjoy outdoor adventures across AlUla’s canyons and rocky terrain.,2026-08-18,Half Day,Adventure,220,10:30,Rock Climbing Experience
+Canyon Adventure Tour,Enjoy outdoor adventures across AlUla’s canyons and rocky terrain.,2026-08-18,Half Day,Adventure,220,12:30,Scenic Viewpoint Stop
+
+Stargazing Desert Escape,Experience AlUla’s famous night skies with guided astronomy activities.,2026-08-25,Half Day,Nature,170,18:00,Sunset Viewing
+Stargazing Desert Escape,Experience AlUla’s famous night skies with guided astronomy activities.,2026-08-25,Half Day,Nature,170,19:30,Dinner Camp
+Stargazing Desert Escape,Experience AlUla’s famous night skies with guided astronomy activities.,2026-08-25,Half Day,Nature,170,21:00,Guided Stargazing
+
+AlUla Cultural Experience,Immerse yourself in local traditions, crafts, and cuisine.,2026-09-01,Full Day,Heritage,260,09:00,Old Market Visit
+AlUla Cultural Experience,Immerse yourself in local traditions, crafts, and cuisine.,2026-09-01,Full Day,Heritage,260,12:00,Traditional Lunch
+AlUla Cultural Experience,Immerse yourself in local traditions, crafts, and cuisine.,2026-09-01,Full Day,Heritage,260,15:00,Handicraft Workshop
+
+Extreme Adventure Challenge,Take on AlUla’s most exciting outdoor activities in one action-packed trip.,2026-09-10,Full Day,Adventure,350,08:00,Zipline Experience
+Extreme Adventure Challenge,Take on AlUla’s most exciting outdoor activities in one action-packed trip.,2026-09-10,Full Day,Adventure,350,11:00,ATV Desert Race
+Extreme Adventure Challenge,Take on AlUla’s most exciting outdoor activities in one action-packed trip.,2026-09-10,Full Day,Adventure,350,14:00,Rock Climbing Challenge
+Extreme Adventure Challenge,Take on AlUla’s most exciting outdoor activities in one action-packed trip.,2026-09-10,Full Day,Adventure,350,16:30,Sunset Viewpoint
