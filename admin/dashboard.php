@@ -58,6 +58,9 @@ include "../includes/db.php";
             <label>Description:</label>
             <textarea name="description" required></textarea>
 
+            <label>Tour Date:</label>
+            <input type="date" name="tour_date" required>
+
             <label>Duration:</label>
             <select name="duration" required>
                 <option value="">Select duration</option>
@@ -123,6 +126,7 @@ include "../includes/db.php";
             <thead>
                 <tr>
                     <th>Tour Title</th>
+                    <th>Date</th>
                     <th>Category</th>
                     <th>Duration</th>
                     <th>Price</th>
@@ -147,6 +151,7 @@ include "../includes/db.php";
 
                         // Display tour details
                         echo "<td>" . htmlspecialchars($tour['title']) . "</td>";
+                        echo "<td>" . htmlspecialchars($tour['tour_date']) . "</td>";
                         echo "<td>" . htmlspecialchars($tour['category']) . "</td>";
                         echo "<td>" . htmlspecialchars($tour['duration']) . "</td>";
                         echo "<td>$" . htmlspecialchars($tour['price']) . "</td>";

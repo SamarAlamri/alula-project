@@ -1,4 +1,3 @@
-/* Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] *//* Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march */
 
 
 /* Function used to validate the feedback form before submission */
@@ -454,6 +453,7 @@ const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
 const durationFilter = document.getElementById("durationFilter");
 const toursContainer = document.getElementById("toursContainer");
+const dateFilter = document.getElementById("dateFilter");
 
 function liveSearchTours() {
     if (!searchInput || !categoryFilter || !durationFilter || !toursContainer) {
@@ -463,10 +463,12 @@ function liveSearchTours() {
     const search = searchInput.value;
     const category = categoryFilter.value;
     const duration = durationFilter.value;
+    const tourDate = dateFilter ? dateFilter.value : "";
 
     fetch("../api/search-tours.php?search=" + encodeURIComponent(search) +
-          "&category=" + encodeURIComponent(category) +
-          "&duration=" + encodeURIComponent(duration))
+      "&category=" + encodeURIComponent(category) +
+      "&duration=" + encodeURIComponent(duration) +
+      "&tour_date=" + encodeURIComponent(tourDate))
         .then(response => response.json())
         .then(tours => {
             toursContainer.innerHTML = "";
@@ -484,9 +486,10 @@ function liveSearchTours() {
                         <p><strong>Category:</strong> ${tour.category}</p>
                         <p><strong>Duration:</strong> ${tour.duration}</p>
                         <p><strong>Price:</strong> ${tour.price} SAR</p>
-                        <a href="mytour.php?tour_id=${tour.id}">
-                            <button class="select-btn">Book Tour</button>
-                        </a>
+                        <p><strong>Date:</strong> ${tour.tour_date}</p>
+                        <button type="button" class="select-btn book-tour-btn" data-tour-id="${tour.id}">
+                        Book Tour
+                    </button>
                     </section>
                 `;
             });
@@ -500,6 +503,7 @@ if (searchInput) {
     searchInput.addEventListener("input", liveSearchTours);
     categoryFilter.addEventListener("change", liveSearchTours);
     durationFilter.addEventListener("change", liveSearchTours);
+    dateFilter.addEventListener("change", liveSearchTours);
 }
 
 // ==========================================
@@ -518,3 +522,135 @@ if (loginRequiredButtons.length > 0) {
         });
     });
 }
+
+
+// ==========================================
+// Booking Policy Modal Management
+// ==========================================
+
+let selectedTourId = null;
+
+document.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("book-tour-btn")) {
+        selectedTourId = event.target.getAttribute("data-tour-id");
+
+        const modal = document.getElementById("bookingPolicyModal");
+
+        if (modal) {
+            modal.style.display = "flex";
+        }
+    }
+
+    if (event.target.id === "cancelBookingBtn") {
+        const modal = document.getElementById("bookingPolicyModal");
+
+        if (modal) {
+            modal.style.display = "none";
+        }
+
+        selectedTourId = null;
+    }
+
+    if (event.target.id === "confirmBookingBtn") {
+        if (selectedTourId) {
+            window.location.href = "mytour.php?tour_id=" + selectedTourId;
+        }
+    }
+});
+
+// ==========================================
+// Safe Tour Selection & Search Handling
+// ==========================================
+const selectButtons = document.querySelectorAll('.select-btn');
+const confirmationMessage = document.getElementById('confirmation-message');
+
+// 2. Protect the search form submit event listener
+const tourSearchForm = document.getElementById('tourSearchForm');
+if (tourSearchForm) {
+    tourSearchForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stops form from submitting and refreshing the page
+    });
+}
+
+// ==========================================
+// Cancel Tour Modal Management
+// ==========================================
+
+if (document.getElementById("cancelPolicyModal")) {
+
+    let cancelTourId = null;
+
+    document.addEventListener("click", function(event) {
+
+        // Open cancellation modal
+        if (event.target.classList.contains("cancel-tour-btn")) {
+
+            cancelTourId = event.target.getAttribute("data-tour-id");
+            const tourDate = event.target.getAttribute("data-tour-date");
+
+            const refundMessage = document.getElementById("refundMessage");
+            const modal = document.getElementById("cancelPolicyModal");
+
+            const today = new Date();
+            const tourDay = new Date(tourDate);
+
+            const differenceInDays = Math.ceil(
+                (tourDay - today) / (1000 * 60 * 60 * 24)
+            );
+
+            if (differenceInDays >= 7) {
+                refundMessage.textContent = "You are eligible for a full refund.";
+            } else if (differenceInDays >= 3) {
+                refundMessage.textContent = "You are eligible for a 50% refund.";
+            } else {
+                refundMessage.textContent = "This cancellation is not eligible for a refund.";
+            }
+
+            modal.style.display = "flex";
+        }
+
+        // Close modal
+        if (event.target.id === "closeCancelBtn") {
+
+            document.getElementById("cancelPolicyModal").style.display = "none";
+            cancelTourId = null;
+        }
+
+        // Confirm cancellation
+        if (event.target.id === "confirmCancelBtn") {
+
+            const formData = new FormData();
+            formData.append("tour_id", cancelTourId);
+
+            fetch("../api/cancel-tour.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.success) {
+
+                    const tourBox = document.querySelector(
+                        ".cancel-tour-btn[data-tour-id='" + cancelTourId + "']"
+                    ).closest(".itinerary-container");
+
+                    tourBox.remove();
+
+                    document.getElementById("cancelPolicyModal").style.display = "none";
+                    cancelTourId = null;
+
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Something went wrong while cancelling the tour.");
+            });
+        }
+    });
+}
+
+    

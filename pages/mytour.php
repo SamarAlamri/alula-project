@@ -1,8 +1,3 @@
-<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-<?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-?>
 <?php
 include "../includes/auth.php";
 requireLogin();
@@ -182,6 +177,12 @@ include "../includes/header.php";
 
                 echo "</tbody>";
                 echo "</table>";
+
+                echo "<button type='button' class='select-btn cancel-btn cancel-tour-btn'
+                data-tour-id='" . $tour['id'] . "'
+                data-tour-date='" . $tour['tour_date'] . "'>
+                Cancel Tour
+                </button>";
                 echo "</div>";
             }
         } else {
@@ -189,10 +190,30 @@ include "../includes/header.php";
         }
         ?>
 
+
     </div>
 
+    <div id="cancelPolicyModal" class="policy-modal">
+        <div class="policy-box">
+            <h2>Cancellation Policy</h2>
 
+            <p>Please confirm your cancellation:</p>
+
+            <ul>
+                <li>Full refund if cancelled 7 or more days before the tour.</li>
+                <li>50% refund if cancelled 3 to 6 days before the tour.</li>
+                <li>No refund if cancelled 2 days or less before the tour.</li>
+            </ul>
+
+            <p id="refundMessage"></p>
+
+            <button id="confirmCancelBtn" class="select-btn">Confirm Cancellation</button>
+            <button id="closeCancelBtn" class="select-btn">Keep Tour</button>
+        </div>
+    </div>
  <?php include "../includes/footer.php"; ?>
+
+ <script src="../scripts/main.js"></script>
 
 </body>
 </html>

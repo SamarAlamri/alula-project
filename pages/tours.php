@@ -1,27 +1,8 @@
-<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-
 <?php
 include "../includes/auth.php";
 include "../includes/db.php";
 
-$search = isset($_GET['search']) ? trim($_GET['search']) : "";
-$category = isset($_GET['category']) ? trim($_GET['category']) : "";
-$duration = isset($_GET['duration']) ? trim($_GET['duration']) : "";
-
-$sql = "SELECT * FROM tours WHERE 1";
-
-if (!empty($search)) {
-    $sql .= " AND title LIKE '%" . $conn->real_escape_string($search) . "%'";
-}
-
-if (!empty($category)) {
-    $sql .= " AND category = '" . $conn->real_escape_string($category) . "'";
-}
-
-if (!empty($duration)) {
-    $sql .= " AND duration = '" . $conn->real_escape_string($duration) . "'";
-}
-
+$sql = "SELECT * FROM tours ORDER BY created_at DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -64,6 +45,8 @@ include "../includes/header.php";
     <form id="tourSearchForm">
         <input type="text" id="searchInput" name="search" placeholder="Search tours...">
 
+        <input type="date" id="dateFilter" class="filter-input" name="tour_date">
+
         <select id="categoryFilter" name="category">
             <option value="">All Categories</option>
             <option value="Heritage">Heritage</option>
@@ -88,12 +71,14 @@ include "../includes/header.php";
             echo "<p>" . htmlspecialchars($tour['description']) . "</p>";
             echo "<p><strong>Category:</strong> " . htmlspecialchars($tour['category']) . "</p>";
             echo "<p><strong>Duration:</strong> " . htmlspecialchars($tour['duration']) . "</p>";
+            echo "<p><strong>Date:</strong> " . date("F j, Y", strtotime($tour['tour_date'])) . "</p>";
             echo "<p><strong>Price:</strong> " . htmlspecialchars($tour['price']) . " SAR</p>";
             if (isLoggedIn()) {
 
-                echo "<a href='mytour.php?tour_id=" . $tour['id'] . "'>
-                        <button class='select-btn'>Book Tour</button>
-                    </a>";
+                echo "<button type='button' class='select-btn book-tour-btn'
+                        data-tour-id='" . $tour['id'] . "'>
+                        Book Tour
+                    </button>";
 
             } else {
 
@@ -116,27 +101,23 @@ include "../includes/header.php";
     ✅ Tour selected successfully!
 </div>
 
-<script>
-    const buttons = document.querySelectorAll('.select-btn');
-    const message = document.getElementById('confirmation-message');
+<div id="bookingPolicyModal" class="policy-modal">
+    <div class="policy-box">
+        <h2>Booking Guidelines</h2>
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            message.classList.add('show');
+        <p>Please read before confirming your booking:</p>
 
-            // hide after 2 seconds
-            setTimeout(() => {
-                message.classList.remove('show');
-            }, 2000);
-        });
-    });
+        <ul>
+            <li>Full refund if cancelled 7 or more days before the tour.</li>
+            <li>50% refund if cancelled 3 to 6 days before the tour.</li>
+            <li>No refund if cancelled 2 days or less before the tour.</li>
+            <li>Tour schedules may change due to weather or safety reasons.</li>
+        </ul>
 
-    document.getElementById('tourSearchForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Stops form from submitting and refreshing the page
-    });
-    
-</script>
-
+        <button id="confirmBookingBtn" class="select-btn">Accept & Continue</button>
+        <button id="cancelBookingBtn" class="select-btn">Cancel</button>
+    </div>
+</div>
 
 <?php include "../includes/footer.php"; ?>
 

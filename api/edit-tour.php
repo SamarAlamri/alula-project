@@ -1,5 +1,3 @@
-<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-
 <?php
 
 // Database connection
@@ -20,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get updated tour information
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
+    $tour_date = $_POST["tour_date"];
     $duration = trim($_POST["duration"]);
     $category = trim($_POST["category"]);
     $price = $_POST["price"];
@@ -37,15 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Update tour details
         $sql = "UPDATE tours
-                SET title = ?, description = ?, duration = ?, category = ?, price = ?
+                SET title = ?, description = ?, tour_date = ?, duration = ?, category = ?, price = ?
                 WHERE id = ?";
 
         $stmt = $conn->prepare($sql);
 
         $stmt->bind_param(
-            "ssssdi",
+            "sssssdi",
             $title,
             $description,
+            $tour_date,
             $duration,
             $category,
             $price,

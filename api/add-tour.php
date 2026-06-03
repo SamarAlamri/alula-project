@@ -1,4 +1,3 @@
-<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
 <?php
 
 // Database connection
@@ -16,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get tour information from form
     $title = trim($_POST["title"]);
     $description = trim($_POST["description"]);
+    $tour_date = $_POST['tour_date'];
     $duration = trim($_POST["duration"]);
     $category = trim($_POST["category"]);
     $price = $_POST["price"];
@@ -32,11 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         // Insert tour into database
-        $sql = "INSERT INTO tours (title, description, duration, category, price)
-                VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tours
+            (title, description, duration, category, price, tour_date)
+            VALUES (?, ?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssd", $title, $description, $duration, $category, $price);
+        $stmt->bind_param("ssssds", $title,$description,$duration,$category,$price,$tour_date);
 
         // Check if tour was added successfully
         if ($stmt->execute()) {

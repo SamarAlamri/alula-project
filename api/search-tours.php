@@ -1,5 +1,3 @@
-<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-
 <?php
 
 // Database connection
@@ -9,6 +7,7 @@ include "../includes/db.php";
 $search = isset($_GET['search']) ? trim($_GET['search']) : "";
 $category = isset($_GET['category']) ? trim($_GET['category']) : "";
 $duration = isset($_GET['duration']) ? trim($_GET['duration']) : "";
+$tour_date = isset($_GET['tour_date']) ? trim($_GET['tour_date']) : "";
 
 // Use 1=1 so appending "AND ..." always works seamlessly
 $sql = "SELECT * FROM tours WHERE 1=1";
@@ -33,6 +32,12 @@ if (!empty($category)) {
 if (!empty($duration)) {
     $sql .= " AND duration = ?";
     $params[] = $duration;
+    $types .= "s";
+}
+
+if (!empty($tour_date)) {
+    $sql .= " AND tour_date = ?";
+    $params[] = $tour_date;
     $types .= "s";
 }
 

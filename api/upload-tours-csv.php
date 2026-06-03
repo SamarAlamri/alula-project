@@ -1,5 +1,3 @@
-<!-- Name: [Zain Aljifry], ID: [2107808], Section: [DAR], Date: [8 march] | Name: Samar Alamri, ID: 2206831, Section: DAR, Date: 8 march |Name: Talah Faloudah, ID: 2206666, Section: DAR, Date: 8 march -->
-
 <?php
 
 // Database connection
@@ -79,18 +77,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     while (($row = fgetcsv($file)) !== false) {
 
         // Skip incomplete rows
-        if (count($row) < 7) {
+        if (count($row) < 8) {
             continue;
         }
 
         // Get tour data from CSV row
         $title = trim($row[0]);
         $description = trim($row[1]);
-        $duration = trim($row[2]);
-        $category = trim($row[3]);
-        $price = trim($row[4]);
-        $time = trim($row[5]);
-        $activity = trim($row[6]);
+        $tour_date = trim($row[2]);
+        $duration = trim($row[3]);
+        $category = trim($row[4]);
+        $price = trim($row[5]);
+        $time = trim($row[6]);
+        $activity = trim($row[7]);
 
         // Skip invalid rows
         if (empty($title) || empty($time) || empty($activity)) {
@@ -111,11 +110,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insert new tour if it does not exist
         } else {
-            $insertTourSql = "INSERT INTO tours (title, description, duration, category, price)
-                              VALUES (?, ?, ?, ?, ?)";
+            $insertTourSql = "INSERT INTO tours
+                            (title, description, tour_date, duration, category, price)
+                            VALUES (?, ?, ?, ?, ?, ?)";
 
             $insertTourStmt = $conn->prepare($insertTourSql);
-            $insertTourStmt->bind_param("ssssd", $title, $description, $duration, $category, $price);
+            $insertTourStmt->bind_param(
+                "sssssd",
+                $title,
+                $description,
+                $tour_date,
+                $duration,
+                $category,
+                $price
+            );
             $insertTourStmt->execute();
 
             $tour_id = $insertTourStmt->insert_id;
