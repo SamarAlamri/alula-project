@@ -1,10 +1,10 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-?>
 
-$timeout_duration = 900; // 15 minutes
+$timeout_duration = 1800; // 30 minutes
 
 if (isset($_SESSION['LAST_ACTIVITY'])) {
     if (time() - $_SESSION['LAST_ACTIVITY'] > $timeout_duration) {
