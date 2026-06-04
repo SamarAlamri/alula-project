@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
 $timeout_duration = 900; // 15 minutes
 
