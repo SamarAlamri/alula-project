@@ -7,6 +7,7 @@ requireAdmin();
 
 // Database connection
 include "../includes/db.php";
+include "../includes/session_timeout.php";
 ?>
 
 <!DOCTYPE html>

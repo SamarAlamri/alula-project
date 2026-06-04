@@ -3,6 +3,7 @@ include "../includes/auth.php";
 requireLogin();
 
 include "../includes/db.php"; 
+include "../includes/session_timeout.php";
 require '../phpmailer/PHPMailer.php';
 require '../phpmailer/SMTP.php';
 require '../phpmailer/Exception.php';

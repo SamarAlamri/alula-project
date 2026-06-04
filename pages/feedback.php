@@ -4,6 +4,7 @@
 // Includes the database connection file
 include '../includes/db.php';
 include "../includes/auth.php";
+include "../includes/session_timeout.php";
 require '../phpmailer/PHPMailer.php';
 require '../phpmailer/SMTP.php';
 require '../phpmailer/Exception.php';

@@ -3,7 +3,7 @@ include '../includes/auth.php';
 requireLogin();
 
 include '../includes/db.php';
-
+include "../includes/session_timeout.php";
 $user_id = $_SESSION['user_id'];
 
 $sql = "SELECT name, email, profile_pic FROM users WHERE id = ?";
