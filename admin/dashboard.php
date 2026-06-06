@@ -135,7 +135,9 @@ include "../includes/session_timeout.php";
                     <th>Actions</th>
                 </tr>
             </thead>
-
+            <tbody id="tourTableBody">
+                <?php include "../api/get-tours-table.php"; ?>
+            </tbody>
         </table>
     </div>
 
