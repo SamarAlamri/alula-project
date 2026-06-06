@@ -1,4 +1,8 @@
-
+<?php
+$pageTitle = "AlUla 360";
+$pageSubtitle = "A world of revitalisation, heritage, and adventure";
+include "../includes/header.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,12 +13,6 @@
 </head>
 
 <body>
-    
-<?php
-$pageTitle = "AlUla 360";
-$pageSubtitle = "A world of revitalisation, heritage, and adventure";
-include "../includes/header.php";
-?>
 
 <!-- ========================= -->
 <!-- Main Content Section -->

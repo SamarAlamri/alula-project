@@ -6,6 +6,8 @@ $sql = "SELECT *
         FROM tours
         WHERE tour_date >= CURDATE()
         ORDER BY tour_date ASC";
+
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
