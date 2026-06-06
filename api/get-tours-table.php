@@ -1,5 +1,5 @@
 <?php
-include "../includes/auth.php";
+include_once "../includes/auth.php";
 requireAdmin();
 
 include "../includes/db.php";
