@@ -205,12 +205,10 @@ if (addTourForm) {
             alert(data.message);
             if (data.success) {
                 addTourForm.reset();
-                document.getElementById("scheduleRows").innerHTML = `
-                    <div class="schedule-row">
-                        <input type="time" name="schedule_time[]" required>
-                        <input type="text" name="schedule_activity[]" placeholder="Activity" required>
-                    </div>
-                `;
+                document.getElementById("submitTourButton").textContent = "Add Tour";
+                document.getElementById("tour_id").value = "";
+
+                refreshToursTable();
             }
         })
         .catch(error => {
@@ -242,7 +240,11 @@ function deleteTour(tourId) {
         alert(data.message);
 
         if (data.success) {
-            location.reload();
+        const row = document
+            .querySelector(`button[onclick='deleteTour(${tourId})']`)
+            .closest("tr");
+
+        row.remove();
         }
     })
 
@@ -253,12 +255,13 @@ function deleteTour(tourId) {
     });
 }
 
-function editTour(id, title, description, duration, category, price, buttonElement) {
+function editTour(id, title, description, tour_date, duration, category, price, buttonElement) {
     // 1. Fill out the main inputs
     document.getElementById("tour_id").value = id;
     document.querySelector("input[name='title']").value = title;
     document.querySelector("textarea[name='description']").value = description;
     document.querySelector("input[name='price']").value = price;
+    document.querySelector("input[name='tour_date']").value = tour_date;
 
     // 2. Set dropdown selections
     document.querySelector("select[name='duration']").value = duration;
@@ -275,7 +278,7 @@ function editTour(id, title, description, duration, category, price, buttonEleme
     const tableRow = buttonElement.closest("tr");
     
     // Find the schedule cell (the 5th column, index 4)
-    const scheduleCell = tableRow.cells[4]; 
+    const scheduleCell = tableRow.cells[5]; 
     
     // Split the schedule text by line breaks to get each activity line
     const scheduleLines = scheduleCell.innerHTML.split("<br>").map(line => line.trim()).filter(line => line !== "");
@@ -320,19 +323,16 @@ function editTour(id, title, description, duration, category, price, buttonEleme
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.addEventListener("click", function(event) {
-    if (event.target && event.target.classList.contains("edit-tour-btn")) {
-        const btn = event.target;
-        editTour(
-            btn.getAttribute("data-id"),
-            btn.getAttribute("data-title"),
-            btn.getAttribute("data-description"),
-            btn.getAttribute("data-duration"),
-            btn.getAttribute("data-category"),
-            btn.getAttribute("data-price")
-        );
-    }
-});
+function refreshToursTable() {
+    fetch("../api/get-tours-table.php")
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("tourTableBody").innerHTML = html;
+        })
+        .catch(error => {
+            console.error("Table refresh error:", error);
+        });
+}
 
 const uploadCsvForm = document.getElementById("uploadCsvForm");
 
