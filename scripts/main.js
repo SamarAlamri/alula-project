@@ -682,6 +682,57 @@ if (profileUploadForm) {
             alert("Something went wrong while uploading the profile picture.");
         });
     });
+    // =========================
+// User Role Management
+// =========================
+
+document.querySelectorAll(".role-btn").forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        let userId = this.dataset.id;
+        let action = this.dataset.action;
+
+        let row = this.closest("tr");
+        let roleCell = row.querySelector(".role-cell");
+
+        fetch("../api/user_role.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "id=" + userId + "&action=" + action
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            if (data.success) {
+
+                roleCell.innerHTML =
+                    "<strong>" + data.role + "</strong>";
+
+                if (data.role.toLowerCase() === "admin") {
+
+                    button.innerText = "Remove Admin";
+                    button.dataset.action = "remove_admin";
+                    button.style.backgroundColor = "#5a1a0a";
+
+                } else {
+
+                    button.innerText = "Make Admin";
+                    button.dataset.action = "make_admin";
+                    button.style.backgroundColor = "";
+                }
+
+            } else {
+
+                alert(data.message);
+            }
+        });
+    });
+});
 }
 
     
