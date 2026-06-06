@@ -7,35 +7,10 @@ requireAdmin();
 
 // Database connection
 include "../includes/db.php";
+
+// Session timeout protection
 include "../includes/session_timeout.php";
 
-// Handle role update actions
-if (isset($_GET['action']) && isset($_GET['id'])) {
-
-    // Get user ID and action from URL
-    $userId = intval($_GET['id']);
-    $action = $_GET['action'];
-    
-    // Set user as admin
-    if ($action == 'make_admin') {
-        $updateSql = "UPDATE users SET role = 'admin' WHERE id = ?";
-
-    // Remove admin privileges
-    } else if ($action == 'remove_admin') {
-        $updateSql = "UPDATE users SET role = 'user' WHERE id = ?";
-    }
-    
-    // Execute update query
-    if (isset($updateSql)) {
-        $stmt = $conn->prepare($updateSql);
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-
-        // Refresh page after update
-        header("Location: users.php");
-        exit();
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -99,22 +74,38 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                     // Display each user
                     while ($user = $result->fetch_assoc()) {
 
+                        $role = strtolower($user['role']);
+
                         echo "<tr>";
 
                         echo "<td>" . htmlspecialchars($user['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['email']) . "</td>";
-                        echo "<td><strong>" . ucfirst(htmlspecialchars($user['role'])) . "</strong></td>";
+
+                        echo "<td class='role-cell'><strong>" .
+                             ucfirst(htmlspecialchars($user['role'])) .
+                             "</strong></td>";
 
                         echo "<td style='text-align: center;'>";
 
                         // Show action based on current role
-                        if (strtolower($user['role']) == 'admin') {
+                        if ($role == 'admin') {
 
-                            echo "<a href='users.php?action=remove_admin&id=" . $user['id'] . "' class='admin-btn' style='background-color: #5a1a0a; text-decoration: none; display: inline-block;'>Remove Admin</a>";
+                            echo "<button
+                                    class='admin-btn role-btn'
+                                    data-id='" . $user['id'] . "'
+                                    data-action='remove_admin'
+                                    style='background-color: #5a1a0a;'>
+                                    Remove Admin
+                                  </button>";
 
                         } else {
 
-                            echo "<a href='users.php?action=make_admin&id=" . $user['id'] . "' class='admin-btn' style='text-decoration: none; display: inline-block;'>Make Admin</a>";
+                            echo "<button
+                                    class='admin-btn role-btn'
+                                    data-id='" . $user['id'] . "'
+                                    data-action='make_admin'>
+                                    Make Admin
+                                  </button>";
                         }
 
                         echo "</td>";
@@ -126,6 +117,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                     // Display message if no users exist
                     echo '<tr><td colspan="4" style="text-align: center;">No users found.</td></tr>';
                 }
+
                 ?>
             </tbody>
 
@@ -134,6 +126,74 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     </div>
 
 </div>
+
+<script>
+
+// Select all role buttons
+document.querySelectorAll(".role-btn").forEach(button => {
+
+    // Handle role update click
+    button.addEventListener("click", function () {
+
+        // Get user ID and action
+        let userId = this.dataset.id;
+        let action = this.dataset.action;
+
+        // Get current table row
+        let row = this.closest("tr");
+
+        // Get role cell
+        let roleCell = row.querySelector(".role-cell");
+
+        // Send request to role API
+        fetch("../api/user_role.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+
+            body: "id=" + userId + "&action=" + action
+        })
+
+        // Convert response to JSON
+        .then(response => response.json())
+
+        // Update role without page reload
+        .then(data => {
+
+            if (data.success) {
+
+                // Update displayed role
+                roleCell.innerHTML =
+                    "<strong>" + data.role + "</strong>";
+
+                // Change button to remove admin
+                if (data.role.toLowerCase() === "admin") {
+
+                    button.innerText = "Remove Admin";
+                    button.dataset.action = "remove_admin";
+                    button.style.backgroundColor = "#5a1a0a";
+
+                } else {
+
+                    // Change button to make admin
+                    button.innerText = "Make Admin";
+                    button.dataset.action = "make_admin";
+                    button.style.backgroundColor = "";
+                }
+
+            } else {
+
+                // Display error message
+                alert(data.message);
+            }
+        });
+    });
+});
+
+</script>
 
 </body>
 </html>
