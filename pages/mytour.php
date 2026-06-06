@@ -187,10 +187,9 @@ include "../includes/header.php";
                 echo "</div>";
             }
         } else {
-            echo "<p>Your tour list is empty.</p>";
+            echo "<p class='empty-message'>You have not booked any tours yet.</p>";
         }
         ?>
-
 
     </div>
 

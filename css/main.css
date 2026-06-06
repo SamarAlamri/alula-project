@@ -817,7 +817,19 @@ input[type="submit"]:hover {
 .policy-box h2 {
     color: #7a3b1d;
 }
+ /* ========================= */
+/* Cancel Tour Button */
+/* ========================= */
 
+.empty-message{
+    display: block;
+    width: 100%;
+    text-align: center !important;
+    font-size: 32px !important;
+    font-weight: bold;
+    color: #4a3a33;
+    margin: 120px auto !important;
+}
 /* ========================= */
 /* Cancel Tour Button */
 /* ========================= */
