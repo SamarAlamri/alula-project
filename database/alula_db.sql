@@ -189,9 +189,9 @@ ALTER TABLE `my_trips`
 ALTER TABLE `tour_schedule`
   ADD CONSTRAINT `tour_schedule_ibfk_1` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `users`
-  ADD `reset_token` VARCHAR(255) NULL,
-  ADD `reset_expires` DATETIME NULL;
+ALTER TABLE users
+ADD COLUMN reset_token VARCHAR(255) NULL,
+ADD COLUMN reset_token_expiry DATETIME NULL;
 
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
