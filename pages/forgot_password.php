@@ -1,4 +1,5 @@
 <?php
+
 include "../includes/db.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -15,9 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
 
     if (empty($email)) {
+
         $message = "Email is required.";
+
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
         $message = "Invalid email format.";
+
     } else {
 
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
@@ -30,15 +35,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $token = bin2hex(random_bytes(32));
             $expires = date("Y-m-d H:i:s", strtotime("+1 hour"));
 
-            $update = $conn->prepare("UPDATE users SET reset_token = ?, reset_expires = ? WHERE email = ?");
+            $update = $conn->prepare("
+                UPDATE users 
+                SET reset_token = ?, reset_token_expiry = ?
+                WHERE email = ?
+            ");
+
             $update->bind_param("sss", $token, $expires, $email);
             $update->execute();
 
-            $resetLink = "http://localhost/alula-project/pages/reset_password.php?token=" . $token;
+            $resetLink = "https://cyan-eagle-451975.hostingersite.com/pages/reset_password.php?token=" . $token;
 
             $mail = new PHPMailer(true);
 
             try {
+
                 $mail->isSMTP();
                 $mail->Host = "smtp.gmail.com";
                 $mail->SMTPAuth = true;
@@ -67,11 +78,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $message = "Reset link has been sent to your email.";
 
             } catch (Exception $e) {
-                $message = "Email could not be sent.";
+
+                $message = "Mailer Error: " . $mail->ErrorInfo;
+
             }
 
         } else {
+
             $message = "Email not found.";
+
         }
     }
 }
@@ -86,28 +101,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <div id="Sign-in">
-        <h2>Forgot Password</h2>
+<div id="Sign-in">
 
-        <form action="forgot_password.php" method="POST">
-            <p>
-                <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" required>
-            </p>
+    <h2>Forgot Password</h2>
 
-            <p>
-                <input type="submit" value="Send Reset Link">
-            </p>
-        </form>
+    <form action="forgot_password.php" method="POST">
 
-        <p style="text-align: center !important;">
-            <a href="login.php">Back to Login</a>
+        <p>
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required>
         </p>
 
-        <?php if (!empty($message)) { ?>
-            <p style="text-align: center !important;"><?php echo $message; ?></p>
-        <?php } ?>
-    </div>
+        <p>
+            <input type="submit" value="Send Reset Link">
+        </p>
+
+    </form>
+
+    <p style="text-align:center;">
+        <a href="login.php">Back to Login</a>
+    </p>
+
+    <?php if (!empty($message)) { ?>
+        <p style="text-align:center;">
+            <?php echo $message; ?>
+        </p>
+    <?php } ?>
+
+</div>
 
 </body>
 </html>
